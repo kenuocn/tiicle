@@ -5,8 +5,10 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Example Component</div>
 
-                    <div class="panel-body">
-                        I'm an example component!
+                    <div class="ui three buttons">
+                        <button class="ui active button">One</button>
+                        <button class="ui button">Two</button>
+                        <button class="ui button">Three</button>
                     </div>
                 </div>
             </div>
