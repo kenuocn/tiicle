@@ -47,7 +47,7 @@
                             <i class="icon sign out"></i>
                             退出
                         </a>
-                        <form id="logout-form" action="https://tiicle.com/logout" method="POST" style="display: none;">
+                        <form id="logout-form" action="{{url('logout')}}" method="POST" style="display: none;">
                             <input type="hidden" name="_token" value="Fzqbu0uADJrX5bh9nYUtpqfZdiS1VjJcVzQG34eN">
                         </form>
                     </div>

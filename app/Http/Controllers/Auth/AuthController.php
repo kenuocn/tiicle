@@ -17,7 +17,8 @@
 namespace App\Http\Controllers\Auth;
 
 use Auth;
-use Flash;
+use App\Models\User;
+use App\Http\Requests\Home\StoreUserRequest;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Auth\Traits\SocialiteHelper;
 
@@ -42,14 +43,14 @@ class AuthController
     public function userNotFound($driver, $registerUserData)
     {
         if ($driver == 'github') {
-            $oauthData['image_url'] = $registerUserData->user['avatar_url'];
+            $oauthData['avatar'] = $registerUserData->user['avatar_url'];
             $oauthData['github_id'] = $registerUserData->user['id'];
             $oauthData['github_url'] = $registerUserData->user['url'];
             $oauthData['github_name'] = $registerUserData->nickname;
             $oauthData['name'] = $registerUserData->user['name'];
             $oauthData['email'] = $registerUserData->user['email'];
         } elseif ($driver == 'wechat') {
-            $oauthData['image_url'] = $registerUserData->avatar;
+            $oauthData['avatar'] = $registerUserData->avatar;
             $oauthData['wechat_openid'] = $registerUserData->id;
             $oauthData['name'] = $registerUserData->nickname;
             $oauthData['email'] = $registerUserData->email;
@@ -74,7 +75,7 @@ class AuthController
 
         flash('成功登录!')->success()->important();
 
-        return redirect(route('users.edit', Auth::user()->id));
+        return redirect('/');
     }
 
     /**
@@ -103,17 +104,21 @@ class AuthController
     }
 
     /**
-     * Actually creates the new user account
+     * @param StoreUserRequest $request
+     * @return \Illuminate\Http\RedirectResponse$request
      */
     public function createNewUser(StoreUserRequest $request)
     {
         if (! Session::has('oauthData')) {
             return redirect()->route('login');
         }
+
         $oauthUser = array_merge(Session::get('oauthData'), $request->only('name', 'email', 'password'));
         $userData = array_only($oauthUser, array_keys($request->rules()));
         $userData['register_source'] = $oauthUser['driver'];
+        $userData['password'] = bcrypt($userData['password']);
+        $user = User::create($userData);
 
-        return app(\Phphub\Creators\UserCreator::class)->create($this, $userData);
+        return $this->userFound($user);
     }
 }

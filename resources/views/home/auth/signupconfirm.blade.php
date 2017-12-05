@@ -1,61 +1,66 @@
 @extends('home.layouts.app')
 @section('title', '创建新账号')
 @section('content')
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">创建新账号</h3>
+
+    <div class="six wide column">
+        <div class="ui stacked segment">
+            <div class="content">
+                <h2>创建新账号</h2>
+                <div class="ui divider"></div>
+                @if (count($errors) > 0)
+                <div class="ui floating negative message alert">
+                    <ul class="list">
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
-                <div class="panel-body">
-
-                    <form method="POST" action="{{ route('signup') }}" accept-charset="UTF-8">
-                        {{ csrf_field() }}
-                        <div class="form-group">
-                            <label class="control-label" for="name">头像</label>
-                            <div class="form-group">
-                                <img src="{{ $oauthData['image_url'] }}" width="100%" />
-                            </div>
+                @endif
+                <form class="ui form" role="form" method="POST" action="{{ route('signup') }}" accept-charset="UTF-8">
+                    {{ csrf_field() }}
+                    <div class="field">
+                        <div class="ui segment">
+                            <img class="ui centered  image"  src="{{ $oauthData['avatar'] }}" />
                         </div>
-
-                        <div class="form-group {{{ $errors->has('name') ? 'has-error' : '' }}}">
-                            <label class="control-label" for="name">用户名</label>
-                            <input class="form-control" name="name" type="text" value="{{ $oauthData['name'] ?: '' }}">
-                            {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="user icon"></i>
+                            <input type="text" name="name" placeholder="用户名" value="{{ $oauthData['name'] ?: '' }}" required="">
                         </div>
-
-                        @if($oauthData['driver'] == 'github')
-                            <div class="form-group {{{ $errors->has('github_name') ? 'has-error' : '' }}}">
-                                <label class="control-label" for="github_name">Github Name</label>
-                                <input class="form-control" readonly="readonly" name="github_name" type="text" value="{{ isset($oauthData['github_name']) ? $oauthData['github_name'] : $oauthData['name'] }}">
-                                {!! $errors->first('github_name', '<span class="help-block">:message</span>') !!}
-                            </div>
-                        @endif
-
-                        <div class="form-group {{{ $errors->has('email') ? 'has-error' : '' }}}">
-                            <label class="control-label" for="email">邮箱</label>
-                            <input class="form-control" name="email" type="text" value="{{ $oauthData['email'] ?: '' }}">
-                            {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
+                    </div>
+                    @if($oauthData['driver'] == 'github')
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="github icon"></i>
+                            <input type="text" name="github_name" placeholder="Github Name" value="{{ isset($oauthData['github_name']) ? $oauthData['github_name'] : $oauthData['name'] }}" required="">
                         </div>
-
-                        <div class="form-group {{{ $errors->has('password') ? 'has-error' : '' }}}">
-                            <label class="control-label" for="password">密 码</label>
-                            <input class="form-control" name="password" type="password" value="{{ old('password') }}">
-                            {!! $errors->first('password', '<span class="help-block">:message</span>') !!}
+                    </div>
+                    @endif
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="envelope icon"></i>
+                            <input type="text" name="email" placeholder="邮箱" value="{{ $oauthData['email'] ?: '' }}" required="">
                         </div>
-
-                        <div class="form-group {{{ $errors->has('password_confirmation') ? 'has-error' : '' }}}">
-                            <label class="control-label" for="password_confirmation">确认密码</label>
-                            <input class="form-control" name="password_confirmation" type="password" value="{{ old('password_confirmation') }}">
-                            {!! $errors->first('password_confirmation', '<span class="help-block">:message</span>') !!}
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="lock icon"></i>
+                            <input type="password" name="password" placeholder="密码" value="{{ old('password') }}" required="">
                         </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="lock icon"></i>
+                            <input type="password" name="password_confirmation" placeholder="确认密码" value="{{ old('password_confirmation') }}" required="">
+                        </div>
+                    </div>
 
-                        <input class="btn btn-lg btn-success btn-block" type="submit" value="确定">
-                    </form>
-
-                </div>
+                    <button class="ui primary teal button fluid" type="submit">
+                        <i class="save icon"></i>确定
+                    </button>
+                </form>
             </div>
         </div>
     </div>
-
 @stop

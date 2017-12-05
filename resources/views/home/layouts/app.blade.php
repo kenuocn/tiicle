@@ -19,17 +19,18 @@
 </head>
 
 <body class="{{ route_class() }}-page">
-<div class="main container">
+<div class="main container" id="app">
 
     @include('home.layouts._header')
 
     {{--网页主体--}}
     <div class="ui centered grid container stackable">
-
+        @include('flash::message')
         @yield('content')
 
     </div>
     {{--end网页主体--}}
+    <div class="push"></div>
 </div>
 <!--反馈意见-->
 <a class="circular ui icon button fixed feedback popover" data-content="建议与反馈 @Summer" data-position="left center" href="mailto:summer@yousails.com">
