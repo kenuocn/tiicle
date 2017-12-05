@@ -1,0 +1,47 @@
+
+/*--------------
+  Sidebar Button
+---------------*/
+.fixed.feedback.button {
+    position: fixed;
+    bottom: 74px;
+    right: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    border-radius: 50% !important;
+    z-index: 24;
+}
+
+.launch.button .icon {
+    margin-left: 0px;
+}
+
+a.normalize-link-color {
+    color: inherit;
+}
+
+@media only screen and (max-width: 767px) {
+    .ui.pagination.stackable.menu {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        flex-direction: initial;
+        flex-wrap: wrap;
+    }
+    .ui.pagination.stackable.menu .item {
+        width: initial !important;
+    }
+    .ui.tabular.menu {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        flex-direction: initial;
+        flex-wrap: wrap;
+    }
+    .ui.tabular.menu .item {
+        width: initial !important;
+    }
+    .userspace .content.extra-padding {
+        margin-top: 15px;
+    }
+}
+
+/*# sourceMappingURL=app.css.map */

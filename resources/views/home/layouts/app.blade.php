@@ -24,13 +24,18 @@
     @include('home.layouts._header')
 
     {{--网页主体--}}
-    {{--<div class="ui centered grid container stackable">--}}
+    <div class="ui centered grid container stackable">
 
-        {{--@yield('content')--}}
+        @yield('content')
 
-    {{--</div>--}}
+    </div>
     {{--end网页主体--}}
 </div>
+<!--反馈意见-->
+<a class="circular ui icon button fixed feedback popover" data-content="建议与反馈 @Summer" data-position="left center" href="mailto:summer@yousails.com">
+    <i class="icon talk outline"></i>
+</a>
+<!--end反馈意见-->
 @include('home.layouts._footer')
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
