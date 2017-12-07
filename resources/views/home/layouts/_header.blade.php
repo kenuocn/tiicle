@@ -20,13 +20,13 @@
             <!-- Authentication Links -->
             @guest
                 <div class="item">
-                    <a class="ui basic button" href="{{ route('login.github',['driver'=>'github'])}}"><i class="icon user "></i> 登录 </a>
+                    <a class="ui basic button" href="{{ route('login')}}"><i class="icon user "></i> 登录 </a>
                 </div>
             @else
-                <a class="ui item" href="https://tiicle.com/items/create">
+                <a class="ui item" href="#">
                     <i class="plus icon"></i>
                 </a>
-                <a class="item" href="https://tiicle.com/notifications/unread">
+                <a class="item" href="#">
                     <span class="ui basic circular label notification" id="notification-count">0</span>
                 </a>
                 <div class="ui simple dropdown item stackable nav-user-item" tabindex="0">

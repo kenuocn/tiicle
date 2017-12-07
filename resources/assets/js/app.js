@@ -1,18 +1,21 @@
 require('./bootstrap');
 
-// window.Vue = require('vue');
-//
-// Vue.component('example-component', require('./components/ExampleComponent.vue'));
-//
-//
-// const app = new Vue({
-//     el: '#app'
-// });
+window.Vue = require('vue');
 
-var kenuo = require('./main');
+Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
-console.log(kenuo)
+
+const app = new Vue({
+    el: '#app'
+});
+
+// var kenuo = require('./common');
+
+require('./main');
+
 // title, text, type, callback
-kenuo.default.message.alert(`标题信息`, `文字信息`, `success`, function () {
-    kenuo.default.message.alert(`你点击了退出`, `文字信息`, `success`)
-})
+// kenuo.default.message.alert(`标题信息`, `文字信息`, `success`,'退出','取消', function () {
+//     kenuo.default.message.alert(`你点击了退出`, `文字信息`, `success`,'退出','取消',function () {
+//         alert('阿星是傻逼');
+//     })
+// })

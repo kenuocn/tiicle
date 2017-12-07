@@ -7,15 +7,7 @@
             <div class="content">
                 <h2>创建新账号</h2>
                 <div class="ui divider"></div>
-                @if (count($errors) > 0)
-                <div class="ui floating negative message alert">
-                    <ul class="list">
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
+                @include('home.common.error')
                 <form class="ui form" role="form" method="POST" action="{{ route('signup') }}" accept-charset="UTF-8">
                     {{ csrf_field() }}
                     <div class="field">

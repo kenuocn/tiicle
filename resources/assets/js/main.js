@@ -1,29 +1,11 @@
-const swal = require('./vendor/sweetalert.min');
+var kenuo = require('./common');
 
-console.log(swal);
+$('#login-out').on('click', function(e) {
 
-const kenuo = (function () {
-    const kenuo = {
-        message: {
-            alert: function (title, text, type, callback) {
-                swal.Sweetalert2({
-                    title: title|| "",
-                    text: text|| "text message",
-                    type: type || "warning",
-                    showCancelButton: true,
-                    cancelButtonText: "取消",
-                    confirmButtonText: "退出"
-                }).then(function () {
-                    if (callback && typeof callback !== 'function') {
-                        return false
-                    } else {
-                        callback()
-                    }
-                });
-            }
-        }
-    }
-    return kenuo
-}).call(this);
+    /**退出登录*/
+    kenuo.default.message.alert('','将要退出登录？', 'warning','退出','取消', function (){
+        e.preventDefault();
+        $('#logout-form').submit();
+    });
 
- export default kenuo
+});
