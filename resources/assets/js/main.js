@@ -24,5 +24,6 @@ const kenuo = (function () {
         }
     }
     return kenuo
-}).call(this)
+}).call(this);
+
  export default kenuo
