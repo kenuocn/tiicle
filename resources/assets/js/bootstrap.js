@@ -10,9 +10,9 @@ window._ = require('lodash');
 try {
     window.$ = window.jQuery = require('jquery');
 
-    require('bootstrap-sass');
+    // require('bootstrap-sass');
 
-    require('semantic-ui/dist/semantic.min');
+    // require('semantic-ui/dist/semantic.min');
 
 } catch (e) {}
 
@@ -54,3 +54,5 @@ if (token) {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+
+

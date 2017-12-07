@@ -31,24 +31,17 @@
                 </a>
                 <div class="ui simple dropdown item stackable nav-user-item" tabindex="0">
                     <img class="ui avatar image"
-                         src="https://omu8v0x3b.qnssl.com/uploads/avatars/505_1505353785.jpeg?imageView2/1/w/200/h/200">&nbsp;
-                    kenuocn <i class="dropdown icon"></i>
+                         src="{{ Auth::user()->avatar }}">&nbsp;
+                    {{ Auth::user()->name }} <i class="dropdown icon"></i>
                     <div class="ui menu stackable" tabindex="-1">
-
-                        <a href="https://tiicle.com/kenuocn" class="item">
-                            <i class="icon user"></i>
-                            个人中心
-                        </a>
-                        <a href="https://tiicle.com/users/profile" class="item">
-                            <i class="icon cogs"></i>
-                            编辑资料
-                        </a>
+                        <a href="{{Auth::user()->id}}" class="item"><i class="icon user"></i>个人中心</a>
+                        <a href="{{route('users.profile')}}" class="item"><i class="icon cogs"></i>编辑资料</a>
                         <a href="javascript:void(0)" class="item" id="login-out">
                             <i class="icon sign out"></i>
                             退出
                         </a>
                         <form id="logout-form" action="{{url('logout')}}" method="POST" style="display: none;">
-                            <input type="hidden" name="_token" value="Fzqbu0uADJrX5bh9nYUtpqfZdiS1VjJcVzQG34eN">
+                            {{csrf_field()}}
                         </form>
                     </div>
                 </div>

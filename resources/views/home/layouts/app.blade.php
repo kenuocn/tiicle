@@ -15,7 +15,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
 </head>
 
 <body class="{{ route_class() }}-page">
@@ -31,6 +30,7 @@
     </div>
     {{--end网页主体--}}
     <div class="push"></div>
+
 </div>
 <!--反馈意见-->
 <a class="circular ui icon button fixed feedback popover" data-content="建议与反馈 @Summer" data-position="left center" href="mailto:summer@yousails.com">
@@ -40,5 +40,10 @@
 @include('home.layouts._footer')
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+<script>
+
+    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+
+</script>
 </body>
 </html>
