@@ -4,7 +4,7 @@
             Tiicle
             <div class="ui left pointing orange basic label" style="font-weight: normal;"> 记录让编码更高效</div>
         </a>
-        <a href="https://tiicle.com/explore" class="item">发现</a>
+        <a href="#" class="item">发现</a>
         <div class="ui fluid category search item">
             <div class="ui icon input">
                 <input class="prompt" type="text" placeholder="" autocomplete="off">
@@ -12,7 +12,7 @@
             </div>
             <div class="results"></div>
         </div>
-        <a href="http://tiicle.com/items/14/efficient-record-guide" class="item top-nav-hint">
+        <a href="#" class="item top-nav-hint">
             <i class="icon idea"></i>
             如何高效地记录？
         </a>
@@ -30,16 +30,17 @@
                     <span class="ui basic circular label notification" id="notification-count">0</span>
                 </a>
                 <div class="ui simple dropdown item stackable nav-user-item" tabindex="0">
-                    <img class="ui avatar image"
-                         src="{{ Auth::user()->avatar }}">&nbsp;
+                    <img class="ui avatar image" src="{{ Auth::user()->avatar }}">&nbsp;
                     {{ Auth::user()->name }} <i class="dropdown icon"></i>
                     <div class="ui menu stackable" tabindex="-1">
-                        <a href="{{Auth::user()->id}}" class="item"><i class="icon user"></i>个人中心</a>
+                        <a href="{{route('users.show',Auth::user()->id)}}" class="item"><i class="icon user"></i>个人中心</a>
+
                         <a href="{{route('users.profile')}}" class="item"><i class="icon cogs"></i>编辑资料</a>
+
                         <a href="javascript:void(0)" class="item" id="login-out">
-                            <i class="icon sign out"></i>
-                            退出
+                            <i class="icon sign out"></i>退出
                         </a>
+
                         <form id="logout-form" action="{{url('logout')}}" method="POST" style="display: none;">
                             {{csrf_field()}}
                         </form>

@@ -40897,7 +40897,7 @@ nav.ui.menu .item .label.notification.basic {
 }
 
 #scrollUp {
-  background-image: url("/build/img/top.png");
+  background-image: url(/images/top.png?9dcee4403f0b41f6acc9a73a212d75ed);
   bottom: 20px;
   right: 20px;
   width: 38px;

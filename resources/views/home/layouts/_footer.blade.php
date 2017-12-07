@@ -39,7 +39,7 @@
                 <img src="https://dn-phphub.qbox.me/uploads/images/201703/05/1/rMJ0Tq7fwf.png?imageView2/1/w/100/h/100" class="ui centered mini image">
             </a>
             <p style="font-size:0.9em; margin-top:20px;margin-bottom: -8px;color: rgb(137, 137, 140);" class="ui inverted ">
-                由 <a href="http://weibo.com/u/1837553744?is_hot=1" target="_blank" style="color: inherit;">Summer</a> 设计和编码 <span style="color: #e27575;font-size: 14px;">❤</span>
+                由 <a href="https://github.com/kenuocn" target="_blank" style="color: inherit;">Kenuo</a> 设计和编码 <span style="color: #e27575;font-size: 14px;">❤</span>
             </p>
         </div>
     </div>
