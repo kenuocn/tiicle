@@ -38,13 +38,13 @@
                     <div class="field">
                         <div class="ui left icon input">
                             <i class="lock icon"></i>
-                            <input type="password" name="password" placeholder="密码" value="{{ old('password') }}" required="">
+                            <input type="password" name="password" placeholder="密码" value="" required="">
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui left icon input">
                             <i class="lock icon"></i>
-                            <input type="password" name="password_confirmation" placeholder="确认密码" value="{{ old('password_confirmation') }}" required="">
+                            <input type="password" name="password_confirmation" placeholder="确认密码" value="" required="">
                         </div>
                     </div>
 

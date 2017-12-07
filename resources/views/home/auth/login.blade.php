@@ -25,13 +25,16 @@
                     </div>
                 </div>
                 <div class="field">
-                    <div class="ui left icon input">
-                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> 记住密码
+                    <div class="ui checkbox checked">
+                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                        <label>记住密码</label>
                     </div>
                 </div>
-                <button class="ui  basic button" type="submit">
-                    登录
-                </button>
+                <div class="ui buttons fluid">
+                    <button class="ui blue button" type="submit"><i class="send icon"></i>登录</button>
+                    <div class="or"></div>
+                    <a class="ui button" href="{{route('register')}}">注册</a>
+                </div>
             </form>
 
             <div class="ui horizontal divider">Or</div>
