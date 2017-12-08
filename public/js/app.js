@@ -1008,8 +1008,8 @@ try {
   window.$ = window.jQuery = __webpack_require__(14);
 
   // require('bootstrap-sass');
-
   __webpack_require__(56);
+  window.swal = __webpack_require__(43);
   __webpack_require__(57);
 } catch (e) {}
 
@@ -40557,13 +40557,11 @@ $('#login-out').on('click', function (e) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-var swal = __webpack_require__(43);
-
 var kenuo = function () {
     var kenuo = {
         message: {
             alert: function alert(title, text, type, confirm, cancel, callback) {
-                swal.Sweetalert2({
+                swal({
                     title: title || "",
                     text: text || "默认内容",
                     type: type || "warning",

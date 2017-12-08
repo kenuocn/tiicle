@@ -18,7 +18,8 @@ namespace App\Http\Controllers\Auth;
 
 use Auth;
 use App\Models\User;
-use App\Http\Requests\Home\StoreUserRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Auth\Traits\SocialiteHelper;
 
@@ -28,7 +29,8 @@ class AuthController
 
     private function loginUser($user)
     {
-        if ($user->is_banned == 'yes') {
+        if ($user->is_banned == 1)
+        {
             return $this->userIsBanned($user);
         }
 
@@ -82,7 +84,7 @@ class AuthController
         Auth::login($user, true);
         Session::forget('oauthData');
 
-        flash('成功登录!')->success();
+        flash('成功登录!')->success()->important();
 
         return redirect('/');
     }
@@ -113,21 +115,37 @@ class AuthController
     }
 
     /**
-     * @param StoreUserRequest $request
-     * @return \Illuminate\Http\RedirectResponse$request
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function createNewUser(StoreUserRequest $request)
+    public function createNewUser(Request $request)
     {
-        if (! Session::has('oauthData')) {
+        $this->validator($request->all())->validate();
+
+        if (! Session::has('oauthData'))
+        {
             return redirect()->route('login');
         }
 
-        $oauthUser = array_merge(Session::get('oauthData'), $request->only('name', 'email', 'password'));
-        $userData = array_only($oauthUser, array_keys($request->rules()));
-        $userData['register_source'] = $oauthUser['driver'];
+        $userData = array_merge(Session::get('oauthData'), $request->only('name', 'email', 'password'));
+        $userData['register_source'] = $userData['driver'];
         $userData['password'] = bcrypt($userData['password']);
         $user = User::create($userData);
 
         return $this->userFound($user);
+    }
+
+    /**
+     * @param array $data
+     * @return mixed
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name'           => 'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name,' . Auth::id(),
+            'github_name'    => 'string|max:60',
+            'email'          => 'email|required|unique:users,email,' . Auth::id(),
+            'password'       => 'required|confirmed|min:6',
+        ]);
     }
 }

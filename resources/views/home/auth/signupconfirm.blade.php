@@ -47,7 +47,6 @@
                             <input type="password" name="password_confirmation" placeholder="确认密码" value="" required="">
                         </div>
                     </div>
-
                     <button class="ui primary teal button fluid" type="submit">
                         <i class="save icon"></i>确定
                     </button>

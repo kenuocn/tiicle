@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Handlers\ImageUploadHandler;
-use App\Http\Requests\Home\StoreUserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Handlers\ImageUploadHandler;
+use App\Http\Requests\Home\UserRequest;
 use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
@@ -15,40 +14,9 @@ class UsersController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except(['show']);  //允许不用登录查看
+        $this->middleware('auth', ['except' => ['show']]);
     }
 
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * @param User $user
@@ -63,37 +31,35 @@ class UsersController extends Controller
     public function profile()
     {
         $user = auth()->user();
+        $this->authorize('update', $user);
         return view('home.users.profile',compact('user'));
     }
 
     /**
-     * @param StoreUserRequest $request
+     * 修改用户资料
+     * @param UserRequest $request
      * @param ImageUploadHandler $uploader
      * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(StoreUserRequest $request,ImageUploadHandler $uploader,User $user)
+    public function update(UserRequest $request,ImageUploadHandler $uploader,User $user)
     {
+        $this->authorize('update', $user);
+
         $user->fill($request->all());
 
         if ($request->avatar)
         {
-            $result = $uploader->save($request->avatar, 'avatars', $user->id);
+            $result = $uploader->save($request->avatar, 'avatars', $user->id,362);
             if ($result) {
                 $user->avatar = $result['path'];
             }
         }
 
         $user->save();
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        flash('修改资料成功')->success()->important();
+
+        return redirect()->route('users.profile');
     }
 }

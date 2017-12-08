@@ -8,6 +8,7 @@
             <div class="content">
                 <h2>修改资料</h2>
                 <div class="ui divider"></div>
+                @include('home.common.error')
                 <form class="ui form" role="form" method="POST" action="{{route('users.update',$user->id)}}" required="" accept-charset="UTF-8" enctype="multipart/form-data">
                     <input type="hidden" name="_method" value="PUT">
                     {{csrf_field()}}
@@ -21,17 +22,18 @@
                     </div>
                     <div class="field">
                         <label for="real_name-field">称呼</label>
-                        <input class="form-control" type="text" name="real_name" id="real_name-field" value="{{$user->real_name}}" required="">
+                        <input class="form-control" type="text" name="real_name" id="real_name-field" value="{{$user->real_name}}" >
                     </div>
+                    @if($user->github_id)
                     <div class="field">
                         <label for="real_name-field">Github Name</label>
-                        <input class="form-control" type="text" name="github_name" id="github_name-field" value="{{$user->github_name}}" required="">
+                        <input class="form-control" type="text" name="github_name" id="github_name-field" value="{{$user->github_name}}" >
                     </div>
                     <div class="field">
                         <label for="real_name-field">Github</label>
-                        <input class="form-control" type="text" name="github_url" id="github_url-field" value="{{$user->github_url}}" required="">
+                        <input class="form-control" type="text" name="github_url" id="github_url-field" value="{{$user->github_url}}">
                     </div>
-
+                    @endif
                     <div class="field">
                         <label for="company-field">所在公司</label>
                         <input class="form-control" type="text" name="company" id="company-field" value="{{$user->company}}">

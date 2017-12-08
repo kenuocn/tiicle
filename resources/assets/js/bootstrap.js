@@ -11,8 +11,8 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     // require('bootstrap-sass');
-
     require('./vendor/semantic');
+    window.swal = require('./vendor/sweetalert.min');
     require('./vendor/simplemde.min');
 
 } catch (e) {}

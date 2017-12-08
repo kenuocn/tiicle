@@ -5,7 +5,7 @@ namespace App\Http\Requests\Home;
 use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUserRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     public function authorize()
     {
@@ -15,18 +15,17 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'github_id'      => 'unique:users,github_id,' . Auth::id(),
-            'github_name'    => 'string|max:60',
-            'github_url'     => 'url',
-            'name'           => 'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name,' . Auth::id(),
-            'email'          => 'email|required|unique:users,email,' . Auth::id(),
-            'password'       => 'required|confirmed|min:6',
-            'real_name'      => 'between:3,25',
-            'website'        => 'url',
-            'company'        => 'string|max:40',
-            'city'           => 'string|max:128',
-            'avatar'         => 'mimes:jpeg,bmp,png,gif|dimensions:min_width=200,min_height=200',
-            'introduction'   => 'max:200',
+            'github_id'    => 'unique:users,github_id,' . Auth::id(),
+            'github_name'  => 'string',
+            'github_url'   => 'url',
+            'name'         => 'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name,' . Auth::id(),
+            'email'        => 'email|required|unique:users,email,' . Auth::id(),
+            'real_name'    => 'between:3,25',
+            'website'      => 'url',
+            'company'      => 'string|max:40',
+            'city'         => 'string|max:128',
+            'avatar'       => 'mimes:jpeg,bmp,png,gif|dimensions:min_width=200,min_height=200',
+            'introduction' => 'max:200',
         ];
     }
 
@@ -44,9 +43,6 @@ class StoreUserRequest extends FormRequest
             'email.email'        => '邮箱格式不正确',
             'email.required'     => '邮箱不能为空',
             'email.unique'       => '邮箱已经被人使用啦',
-            'password.required'  => '密码不能为空',
-            'password.confirmed' => '两次密码输入不一致哦',
-            'password.min'       => '密码最小长度不能少于6位',
             'real_name.between'  => '称呼必须介于 3 - 25 个字符之间。',
             'website.url'        => '个人网址格式不正确',
             'company.string'     => '公司名称必须是字符串',

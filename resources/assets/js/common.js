@@ -1,10 +1,8 @@
-const swal = require('./vendor/sweetalert.min');
-
 const kenuo = (function () {
     const kenuo = {
         message: {
             alert: function (title, text, type, confirm,cancel,callback) {
-                swal.Sweetalert2({
+                swal({
                     title: title || "",
                     text: text || "默认内容",
                     type: type || "warning",

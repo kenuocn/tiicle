@@ -21,10 +21,9 @@
 <div class="main container" id="app">
 
     @include('home.layouts._header')
-
+    @include('flash::message')
     {{--网页主体--}}
     <div class="ui centered grid container stackable">
-        @include('flash::message')
         @yield('content')
 
     </div>
@@ -41,11 +40,7 @@
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
 <script>
-
-//    $('#flash-overlay-modal').modal();
-//
-//    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
-
+    
     $('.message .close')
         .on('click', function() {
             $(this)

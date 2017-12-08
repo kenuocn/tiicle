@@ -1,5 +1,5 @@
 <div class="ui centered grid container message-container">
-    <div class="twelve wide column">
+    <div class="twelve column">
         <div class="ui message
             @switch($message['level'])
                 @case('success')
