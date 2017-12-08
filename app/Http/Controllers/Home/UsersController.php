@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Handlers\ImageUploadHandler;
+use App\Http\Requests\Home\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -65,15 +67,23 @@ class UsersController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param StoreUserRequest $request
+     * @param ImageUploadHandler $uploader
+     * @param User $user
      */
-    public function update(Request $request, $id)
+    public function update(StoreUserRequest $request,ImageUploadHandler $uploader,User $user)
     {
-        //
+        $user->fill($request->all());
+
+        if ($request->avatar)
+        {
+            $result = $uploader->save($request->avatar, 'avatars', $user->id);
+            if ($result) {
+                $user->avatar = $result['path'];
+            }
+        }
+
+        $user->save();
     }
 
     /**

@@ -1,19 +1,31 @@
-<div id="flash-overlay-modal" class="modal fade {{ $modalClass or '' }}">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<div class="ui centered grid container message-container">
+    <div class="twelve wide column">
+        <div class="ui message
+            @switch($message['level'])
+                @case('success')
+                    olive
+                @break
 
-                <h4 class="modal-title">{{ $title }}</h4>
-            </div>
+                @case('error')
+                    negative
+                @break
 
-            <div class="modal-body">
-                <p>{!! $body !!}</p>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+                @case('warning')
+                    warning
+                @break
+                @default
+                    info
+            @endswitch
+        ">
+            @if ($important)
+                <i class="close icon"></i>
+            @endif
+            @if ($level == 'warning' || $level == 'info')
+                <i class="icon info"></i>
+            @endif
+            <div class="header">{{$title}}</div>
+            <p>{!! $body !!}</p>
         </div>
     </div>
 </div>
+

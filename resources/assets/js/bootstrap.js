@@ -12,7 +12,8 @@ try {
 
     // require('bootstrap-sass');
 
-    // require('semantic-ui/dist/semantic.min');
+    require('./vendor/semantic');
+    require('./vendor/simplemde.min');
 
 } catch (e) {}
 

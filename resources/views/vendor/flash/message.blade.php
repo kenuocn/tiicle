@@ -3,25 +3,40 @@
         @include('flash::modal', [
             'modalClass' => 'flash-modal',
             'title'      => $message['title'],
+            'level'      => $message['level'],
+            'important'  => $message['important'],
             'body'       => $message['message']
         ])
     @else
-        <div class="alert
-                    alert-{{ $message['level'] }}
-                    {{ $message['important'] ? 'alert-important' : '' }}"
-                    role="alert"
-        >
-            @if ($message['important'])
-                <button type="button"
-                        class="close"
-                        data-dismiss="alert"
-                        aria-hidden="true"
-                >&times;</button>
-            @endif
+        <div class="ui centered grid container message-container">
+            <div class="twelve wide column">
+                <div class="ui message
+                        @switch($message['level'])
+                            @case('success')
+                                olive
+                            @break
 
-            {!! $message['message'] !!}
+                            @case('error')
+                                negative
+                            @break
+
+                            @case('warning')
+                                warning
+                            @break
+                            @default
+                                info
+                        @endswitch
+            ">
+                    @if ($message['important'])
+                        <i class="close icon"></i>
+                    @endif
+                    @if ($message['level'] == 'warning' || $message['level'] == 'info')
+                        <i class="icon info"></i>
+                    @endif
+                    {!! $message['message'] !!}
+                </div>
+            </div>
         </div>
     @endif
 @endforeach
-
 {{ session()->forget('flash_notification') }}

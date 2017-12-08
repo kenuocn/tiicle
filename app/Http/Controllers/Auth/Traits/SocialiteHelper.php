@@ -26,6 +26,7 @@ trait SocialiteHelper
     public function redirectToProvider(Request $request)
     {
         $driver = $request->input('driver');
+
         /**验证登录方式*/
         $driver = ! isset($this->oauthDrivers[$driver]) ? 'github' : $this->oauthDrivers[$driver];
 
@@ -61,6 +62,7 @@ trait SocialiteHelper
             }
 
             return redirect(route('users.edit_social_binding', Auth::id()));
+
         } else {
 
             /**存在就直接登录*/

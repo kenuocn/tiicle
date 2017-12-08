@@ -42,10 +42,18 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script>
 
-    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+//    $('#flash-overlay-modal').modal();
+//
+//    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
 
-
-
+    $('.message .close')
+        .on('click', function() {
+            $(this)
+                .closest('.message-container')
+                .transition('fade')
+            ;
+        })
+    ;
 </script>
 </body>
 </html>

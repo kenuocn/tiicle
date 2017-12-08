@@ -49,7 +49,7 @@
 
                     <div class="field">
                         <label for="bio-field">个人简介</label>
-                        <textarea rows="3" id="bio-field" name="bio" placeholder="">{{$user->introduction}}</textarea>
+                        <textarea rows="3" id="bio-field" name="introduction" placeholder="">{{$user->introduction}}</textarea>
                     </div>
 
                     <div class="field">

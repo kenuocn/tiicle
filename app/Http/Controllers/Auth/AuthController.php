@@ -36,30 +36,39 @@ class AuthController
     }
 
     /**
-     * ----------------------------------------
-     * GithubAuthenticatorListener Delegate
-     * ----------------------------------------
+     * 第三方注册授权数据
+     * @param $driver
+     * @param $registerUserData
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function userNotFound($driver, $registerUserData)
     {
         if ($driver == 'github') {
-            $oauthData['avatar'] = $registerUserData->user['avatar_url'];
             $oauthData['github_id'] = $registerUserData->user['id'];
-            $oauthData['github_url'] = $registerUserData->user['url'];
+            $oauthData['github_url'] = $registerUserData->user['html_url'];
             $oauthData['github_name'] = $registerUserData->nickname;
-            $oauthData['name'] = $registerUserData->user['name'];
+            $oauthData['name'] = $registerUserData->nickname;
             $oauthData['email'] = $registerUserData->user['email'];
-        } elseif ($driver == 'wechat') {
+            $oauthData['real_name'] = $registerUserData->user['name'];
+            $oauthData['city'] = $registerUserData->user['location'];
+            $oauthData['company'] = $registerUserData->user['company'];
+            $oauthData['avatar'] = $registerUserData->user['avatar_url'];
+            $oauthData['website'] = $registerUserData->user['blog'];
+            $oauthData['introduction'] = $registerUserData->user['bio'];
+        }elseif($driver == 'wechat')
+        {
             $oauthData['avatar'] = $registerUserData->avatar;
-            $oauthData['wechat_openid'] = $registerUserData->id;
             $oauthData['name'] = $registerUserData->nickname;
             $oauthData['email'] = $registerUserData->email;
+            $oauthData['wechat_openid'] = $registerUserData->id;
             $oauthData['wechat_unionid'] = $registerUserData->user['unionid'];
         }
 
         $oauthData['driver'] = $driver;
-
         Session::put('oauthData', $oauthData);
+
+        flash("{$this->oauthLang[$driver]}授权成功!")->success()->important();
+
         return redirect(route('signup'));
     }
 
@@ -73,7 +82,7 @@ class AuthController
         Auth::login($user, true);
         Session::forget('oauthData');
 
-        flash('成功登录!')->success()->important();
+        flash('成功登录!')->success();
 
         return redirect('/');
     }

@@ -14,7 +14,7 @@ class AddPersonalWebsiteToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('personal_website')->nullable();
+            $table->string('website')->nullable()->comment('个人网站');
         });
     }
 
