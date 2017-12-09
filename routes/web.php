@@ -33,4 +33,5 @@ Route::namespace('Home')->group(function () {
 
     Route::resource('categories', 'CategoriesController', ['only' => ['show']]);  //话题分类
 
+    Route::post('uploads/topics_upload_image', 'UploadsController@topicsUploadImage')->name('uploads.topics_upload_image');  //话题图片上传
 });

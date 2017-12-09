@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">
 @stop
 @section('content')
-    <div class="fourteen wide column">
+    <div class="fourteen column">
         <div class="ui segment">
             <div class="content extra-padding">
                 @include('home.common.error')
@@ -16,10 +16,16 @@
                     <div class="field">
                         <input class="form-control" type="text" name="title" id="title-field" value="{{ old('title', $topic->title ) }}" required="" placeholder="标题">
                     </div>
-                    <span class="duke-pulse editor-fullscreen"></span>
-
                     <div class="field">
-                        <textarea rows="15" id="editor" name="body_original" placeholder="请使用 Markdown 编写" required="" style="display: none;">{{ old('body', $topic->body ) }}</textarea>
+                        <select name="category_id" class="ui dropdown" >
+                            @foreach ($categories as $categorie)
+                                <option value="{{ $categorie->id }}" {{ $topic->category_id == $categorie->id ? 'selected' : '' }}>{{ $categorie->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <span class="duke-pulse editor-fullscreen"></span>
+                    <div class="field">
+                        <textarea rows="15" id="editor" name="body" placeholder="请使用 Markdown 编写" required="">{{ old('body', $topic->body ) }}</textarea>
                     </div>
                     <div class="ui message">
                         <button type="submit" class="ui button teal publish-btn"><i class="icon send"></i> 发布</button>
@@ -35,10 +41,16 @@
 <script type="text/javascript"  src="{{ asset('js/simditor.js') }}"></script>
 <script>
     $(document).ready(function(){
+
+        toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment'];
+
         var editor = new Simditor({
             textarea: $('#editor'),
+
+            defaultImage: '../images/image.png',
+            toolbar: toolbar,
             upload: {
-                url: '{{ route('topics.upload_image') }}',
+                url: '{{ route('uploads.topics_upload_image') }}',
                 params: { _token: '{{ csrf_token() }}' },
                 fileKey: 'upload_file',
                 connectionCount: 3,

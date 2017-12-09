@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Home;
 use App\Models\Topic;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Http\Requests\TopicRequest;
+use App\Http\Requests\Home\TopicRequest;
 use App\Http\Controllers\Controller;
 
 class TopicsController extends Controller
@@ -36,10 +36,15 @@ class TopicsController extends Controller
 	}
 
 
-	public function store(TopicRequest $request)
+	public function store(TopicRequest $request,Topic $topic)
 	{
-		$topic = Topic::create($request->all());
-		return redirect()->route('topics.show', $topic->id)->with('message', 'Created successfully.');
+		$topic->fill($request->all());
+        $topic->user_id = auth()->id();
+        $topic->save();
+
+        flash('发布话题成功')->success()->important();
+
+		return redirect()->route('topics.show', $topic->id);
 	}
 
 
