@@ -75,7 +75,8 @@
             <div class="ui teal ribbon label"><i class="trophy icon"></i>贡献 0</div>
             <div class="content extra-padding">
                 <div class="ui attached tabular menu stackable">
-                    <a class="item active" data-tab="first" href="{{ route('users.show', $user->name)}}"><i class="icon feed"></i>动态</a>
+                    <a class="item active" data-tab="first" href="{{ route('users.show', $user->name)}}"><i class="icon list layout"></i>话题</a>
+                    <a class="item" data-tab="first" href="{{ route('users.show', $user->name)}}"><i class="icon feed"></i>动态</a>
                     <a class="item " href="https://tiicle.com/kenuocn/items"><i class="icon file text outline"></i> 编程知识<span class="counter">0</span> </a>
                     <a href="https://tiicle.com/kenuocn/followers" class="item "><i class="icon user"></i> 关注者 <span class="counter">0</span> </a>
                     <a href="https://tiicle.com/kenuocn/stars" class="item "><i class="icon thumbs up"></i> 赞过 <span class="counter">2</span> </a>
@@ -83,7 +84,10 @@
                 {{--@if (if_query('tab', 'replies'))--}}
                     {{--@include('users._replies', ['replies' => $user->replies()->with('topic')->recent()->paginate(5)])--}}
                 {{--@else--}}
-                    {{--@include('users._topics', ['topics' => $user->topics()->recent()->paginate(5)])--}}
+                    @include('home.users._topics', [
+                        'topics' => $user->topics()->with('category')->recent()->paginate(5),
+                        'user'=> $user
+                    ])
                 {{--@endif--}}
             </div>
         </div>

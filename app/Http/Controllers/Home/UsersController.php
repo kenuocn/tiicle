@@ -22,8 +22,11 @@ class UsersController extends Controller
      * @param User $user
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(User $user)
+    public function show($id)
     {
+
+        $user = User::with('topics')->find($id);
+
         return view('home.users.show',compact('user'));
     }
 
