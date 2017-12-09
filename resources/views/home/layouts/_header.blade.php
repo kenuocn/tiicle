@@ -4,7 +4,14 @@
             Tiicle
             <div class="ui left pointing orange basic label" style="font-weight: normal;"> 记录让编码更高效</div>
         </a>
-        <a href="#" class="item">发现</a>
+
+        <!-- Left Side Of Navbar -->
+        <a class="item {{ active_class(if_route('topics.index')) }}" href="{{ route('topics.index') }}">话题</a>
+        <a class="item {{ active_class((if_route('categories.show') && if_route_param('category', 1))) }}" href="{{ route('categories.show', 1) }}">分享</a>
+        <a class="item {{ active_class((if_route('categories.show') && if_route_param('category', 2))) }}" href="{{ route('categories.show', 2) }}">教程</a>
+        <a class="item {{ active_class((if_route('categories.show') && if_route_param('category', 3))) }}" href="{{ route('categories.show', 3) }}">问答</a>
+        <a class="item {{ active_class((if_route('categories.show') && if_route_param('category', 4))) }}" href="{{ route('categories.show', 4) }}">公告</a>
+
         <div class="ui fluid category search item">
             <div class="ui icon input">
                 <input class="prompt" type="text" placeholder="" autocomplete="off">

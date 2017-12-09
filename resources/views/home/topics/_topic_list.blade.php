@@ -9,7 +9,7 @@
             </div>
             <div class="content">
                 <div class="summary">
-                    <a class="ui label small " href="#">{{ $topic->category->name }}</a>
+                    <a class="ui label small " href="{{ route('categories.show', $topic->category->id) }}" title="{{ $topic->category->name }}">{{ $topic->category->name }}</a>
                     <a href="{{ route('topics.show', [$topic->id]) }}" class="title" title="{{ $topic->title }}">{{ $topic->title }}</a>
                 </div>
                 <div class="meta">
