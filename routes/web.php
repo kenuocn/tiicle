@@ -32,3 +32,5 @@ Route::namespace('Home')->group(function () {
 
 
 Auth::routes();
+
+Route::resource('topics', 'TopicsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
