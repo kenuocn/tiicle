@@ -17,7 +17,7 @@
                 </div>
                 @else
                     <h1>
-                        <a class="ui icon button teal" href="https://tiicle.com/items/create"><i class="icon plus"></i> 记录编码技巧</a>
+                        <a class="ui icon button teal" href="{{ route('topics.create') }}"><i class="icon plus"></i> 创建话题</a>
                     </h1>
                 @endif
                 <div style="clear: both"></div>

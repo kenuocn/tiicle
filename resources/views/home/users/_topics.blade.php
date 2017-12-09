@@ -23,7 +23,6 @@
                     </span>
                 </div>
             </div>
-
             <div class="item-meta">
                 <a class="ui label basic light grey" href="{{ route('topics.show', [$topic->id]) }}"><i class="thumbs up icon"></i> {{ $topic->reply_count}} </a>
                 <a class="ui label basic light grey" href="{{ route('topics.show', [$topic->id]) }}"><i class="comment icon"></i> {{ $topic->reply_count }} </a>

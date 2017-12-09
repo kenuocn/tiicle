@@ -85,7 +85,7 @@
                     {{--@include('users._replies', ['replies' => $user->replies()->with('topic')->recent()->paginate(5)])--}}
                 {{--@else--}}
                     @include('home.users._topics', [
-                        'topics' => $user->topics()->with('category')->recent()->paginate(5),
+                        'topics' => $user->topics()->with('category')->recent()->paginate(10),
                         'user'=> $user
                     ])
                 {{--@endif--}}

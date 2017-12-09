@@ -15,6 +15,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('css')
 </head>
 
 <body class="{{ route_class() }}-page">
@@ -39,6 +40,7 @@
 @include('home.layouts._footer')
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+@yield('scripts')
 <script>
     
     $('.message .close')

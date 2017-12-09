@@ -13,8 +13,7 @@ try {
     // require('bootstrap-sass');
     require('./vendor/semantic');
     window.swal = require('./vendor/sweetalert.min');
-    require('./vendor/simplemde.min');
-
+    // window.SimpleMDE = require('./vendor/simplemde.min');
 } catch (e) {}
 
 /**

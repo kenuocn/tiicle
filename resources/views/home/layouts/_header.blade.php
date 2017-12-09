@@ -20,7 +20,7 @@
             <div class="results"></div>
         </div>
         <a href="#" class="item top-nav-hint">
-            <div class="duke-pulse about-us hide" style="display: block;"></div>
+            <div class="duke-pulse about-us hide" style="display: none;"></div>
             <i class="icon idea"></i>
             如何高效地记录？
         </a>
@@ -31,7 +31,7 @@
                     <a class="ui basic button" href="{{ route('login')}}"><i class="icon user "></i> 登录 </a>
                 </div>
             @else
-                <a class="ui item" href="#">
+                <a class="ui item" href="{{ route('topics.create') }}">
                     <i class="plus icon"></i>
                 </a>
                 <a class="item" href="#">
