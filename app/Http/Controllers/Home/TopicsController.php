@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Home;
 
 use App\Models\Topic;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
 
@@ -16,18 +15,18 @@ class TopicsController extends Controller
 
 	public function index()
 	{
-		$topics = Topic::paginate();
-		return view('topics.index', compact('topics'));
+		$topics = Topic::with('user', 'category')->paginate(30);
+		return view('home.topics.index', compact('topics'));
 	}
 
     public function show(Topic $topic)
     {
-        return view('topics.show', compact('topic'));
+        return view('home.topics.show', compact('topic'));
     }
 
 	public function create(Topic $topic)
 	{
-		return view('topics.create_and_edit', compact('topic'));
+		return view('home.topics.create_and_edit', compact('topic'));
 	}
 
 	public function store(TopicRequest $request)
@@ -39,7 +38,7 @@ class TopicsController extends Controller
 	public function edit(Topic $topic)
 	{
         $this->authorize('update', $topic);
-		return view('topics.create_and_edit', compact('topic'));
+		return view('home.topics.create_and_edit', compact('topic'));
 	}
 
 	public function update(TopicRequest $request, Topic $topic)

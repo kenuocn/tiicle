@@ -13,6 +13,7 @@
             <div class="results"></div>
         </div>
         <a href="#" class="item top-nav-hint">
+            <div class="duke-pulse about-us hide" style="display: block;"></div>
             <i class="icon idea"></i>
             如何高效地记录？
         </a>

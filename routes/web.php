@@ -24,13 +24,8 @@ Route::post('/signup', 'Auth\AuthController@createNewUser')->name('signup');
 /**前台*/
 Route::namespace('Home')->group(function () {
     Route::get('/', 'PagesController@root')->name('root');
-
     Route::get('users/profile','UsersController@profile')->name('users.profile'); //修改资料
     Route::resource('users','UsersController',['only'=> ['index','create','show','store','update','edit','destroy'] ]); //个人中心
+
+    Route::resource('topics', 'TopicsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]); //话题
 });
-
-
-
-Auth::routes();
-
-Route::resource('topics', 'TopicsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
