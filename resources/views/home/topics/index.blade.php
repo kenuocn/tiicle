@@ -22,8 +22,8 @@
                 @endif
                 <div style="clear: both"></div>
                 <div class="ui attached tabular menu stackable">
-                    <a class="item active" data-tab="first" href="#"><i class="icon feed"></i> 活跃</a>
-                    <a class="item " href="#"><i class="icon wait"></i> 最新</a>
+                    <a class="item {{ active_class(( ! if_query('order', 'recent') )) }}" data-tab="first" href="{{ Request::url() }}?order=default"><i class="icon feed"></i> 活跃</a>
+                    <a class="item {{ active_class(if_query('order', 'recent')) }}" href="{{ Request::url() }}?order=recent"><i class="icon wait"></i> 最新</a>
                 </div>
                 {{-- 话题列表 --}}
                 @include('home.topics._topic_list', ['topics' => $topics])
@@ -34,4 +34,7 @@
             </div>
         </div>
     </div>
+
+    {{-- 右边栏 --}}
+    @include('home.topics._sidebar')
 @endsection
