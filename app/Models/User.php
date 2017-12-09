@@ -9,6 +9,13 @@ class User extends Authenticatable
 {
     use Notifiable;
     use Traits\UserSocialiteHelper;
+    use \Venturecraft\Revisionable\RevisionableTrait;
+
+    public static function boot()
+    {
+        parent::boot();
+    }
+
 
     /**
      * The attributes that are mass assignable.

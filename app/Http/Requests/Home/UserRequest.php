@@ -16,16 +16,16 @@ class UserRequest extends FormRequest
     {
         return [
             'github_id'    => 'unique:users,github_id,' . Auth::id(),
-            'github_name'  => 'string',
-            'github_url'   => 'url',
+            'github_name'  => 'nullable|string',
+            'github_url'   => 'nullable|url',
             'name'         => 'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name,' . Auth::id(),
             'email'        => 'email|required|unique:users,email,' . Auth::id(),
-            'real_name'    => 'between:3,25',
-            'website'      => 'url',
-            'company'      => 'string|max:40',
-            'city'         => 'string|max:128',
-            'avatar'       => 'mimes:jpeg,bmp,png,gif|dimensions:min_width=200,min_height=200',
-            'introduction' => 'max:200',
+            'real_name'    => 'nullable|between:3,25',
+            'website'      => 'nullable|url',
+            'company'      => 'nullable|string|max:40',
+            'city'         => 'nullable|string|max:128',
+            'avatar'       => 'nullable|mimes:jpeg,bmp,png,gif|dimensions:min_width=200,min_height=200',
+            'introduction' => 'nullable|max:200',
         ];
     }
 
