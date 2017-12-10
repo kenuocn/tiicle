@@ -33,6 +33,8 @@ Route::namespace('Home')->group(function () {
 
     Route::post('topics/{topic}/voted','VotedTopicsController@voted');  //投票话题
 
+    Route::get('topics/{topic}/voted-users','VotedTopicsController@votedUsers');
+
     Route::resource('topics', 'TopicsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]); //话题
 
     Route::resource('categories', 'CategoriesController', ['only' => ['show']]);  //话题分类

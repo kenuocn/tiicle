@@ -4,10 +4,19 @@ namespace App\Http\Controllers\Home;
 
 use Auth;
 use App\Models\Topic;
+use App\Models\VotedTopic;
 use App\Http\Controllers\Controller;
 
 class VotedTopicsController extends Controller
 {
+    /**
+     * VotedTopicsController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['votedUsers']]);
+    }
+
     /**
      * 投票话题
      * @param Topic $topic
@@ -43,5 +52,18 @@ class VotedTopicsController extends Controller
             'message'=>'成功',
             'data'=> Auth::user()->votedTopicd($topic),
         ]);
+    }
+
+    /**
+     * 获取某个话题所有投票用户
+     * @param VotedTopic $votedTopic
+     * @param $topic
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function votedUsers(VotedTopic $votedTopic,$topic)
+    {
+        $votedTopics = $votedTopic->with('users')->where('topic_id',$topic)->get();
+
+        return response()->json(['status'=>true, 'message'=>'成功', 'data'=> $votedTopics]);
     }
 }

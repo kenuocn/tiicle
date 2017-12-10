@@ -42759,6 +42759,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -42766,26 +42772,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            votedTopicd: false
+            votedTopicd: false,
+            votedUsers: []
         };
     },
-    mounted: function mounted() {
-        var _this = this;
-
-        console.log(this.topic);
-        axios.get('/topics/' + this.topic + '/voted-topicd').then(function (response) {
-            _this.votedTopicd = response.data.data;
-        });
+    created: function created() {
+        this.getVotedTopicd();
+        // 初始化页面获取所有点赞用户
     },
 
 
     methods: {
         voted: function voted() {
-            var _this2 = this;
+            var _this = this;
 
             axios.post('/topics/' + this.topic + '/voted').then(function (response) {
+                _this.votedTopicd = response.data.data;
+                _this.getVotedUsers();
+            });
+        },
+        getVotedTopicd: function getVotedTopicd() {
+            var _this2 = this;
+
+            axios.get('/topics/' + this.topic + '/voted-topicd').then(function (response) {
                 _this2.votedTopicd = response.data.data;
-                console.log(response.data);
+                //再重新获取所有点赞用户
+                _this2.getVotedUsers();
+            });
+        },
+        getVotedUsers: function getVotedUsers() {
+            var _this3 = this;
+
+            axios.get('/topics/' + this.topic + '/voted-users').then(function (response) {
+                _this3.votedUsers = response.data.data;
+                console.log(_this3.votedUsers);
+                console.log(response.data.data);
             });
         }
     }
@@ -42805,13 +42826,9 @@ var render = function() {
         "div",
         {
           staticClass: "ui button kb-star-big basic ",
-          class: { teal: !_vm.votedTopicd },
+          class: _vm.votedTopicd ? "" : "teal",
           attrs: { "data-act": "star" },
-          on: {
-            click: function($event) {
-              _vm.voted()
-            }
-          }
+          on: { click: _vm.voted }
         },
         [
           _c("i", { staticClass: "icon thumbs up" }),
@@ -42821,7 +42838,29 @@ var render = function() {
           ])
         ]
       )
-    ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "voted-users" },
+      [
+        _c("span"),
+        _vm._v(" "),
+        _vm._l(_vm.votedUsers, function(user, index) {
+          return _c("a", { attrs: { href: "/users/" + user.users.id } }, [
+            _c("img", {
+              class: "ui image avatar stargazer image-" + user.users.id,
+              attrs: {
+                src: user.users.avatar,
+                title: user.users.name,
+                alt: user.users.name
+              }
+            })
+          ])
+        })
+      ],
+      2
+    )
   ])
 }
 var staticRenderFns = []
