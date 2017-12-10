@@ -42820,48 +42820,55 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "ui message basic text-center voted-box" }, [
-    _c("div", { staticClass: "buttons" }, [
+  return _c(
+    "div",
+    {
+      staticClass: "ui message basic text-center voted-box",
+      attrs: { id: "voted-box" }
+    },
+    [
+      _c("div", { staticClass: "buttons" }, [
+        _c(
+          "div",
+          {
+            staticClass: "ui button kb-star-big basic ",
+            class: _vm.votedTopicd ? "" : "teal",
+            attrs: { "data-act": "star" },
+            on: { click: _vm.voted }
+          },
+          [
+            _c("i", { staticClass: "icon thumbs up" }),
+            _vm._v(" "),
+            _c("span", { staticClass: "state" }, [
+              _vm._v(_vm._s(_vm.votedTopicd ? "已点赞" : "点赞"))
+            ])
+          ]
+        )
+      ]),
+      _vm._v(" "),
       _c(
         "div",
-        {
-          staticClass: "ui button kb-star-big basic ",
-          class: _vm.votedTopicd ? "" : "teal",
-          attrs: { "data-act": "star" },
-          on: { click: _vm.voted }
-        },
+        { staticClass: "voted-users" },
         [
-          _c("i", { staticClass: "icon thumbs up" }),
+          _c("span"),
           _vm._v(" "),
-          _c("span", { staticClass: "state" }, [
-            _vm._v(_vm._s(_vm.votedTopicd ? "已点赞" : "点赞"))
-          ])
-        ]
+          _vm._l(_vm.votedUsers, function(user, index) {
+            return _c("a", { attrs: { href: "/users/" + user.users.id } }, [
+              _c("img", {
+                class: "ui image avatar stargazer image-" + user.users.id,
+                attrs: {
+                  src: user.users.avatar,
+                  title: user.users.name,
+                  alt: user.users.name
+                }
+              })
+            ])
+          })
+        ],
+        2
       )
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "voted-users" },
-      [
-        _c("span"),
-        _vm._v(" "),
-        _vm._l(_vm.votedUsers, function(user, index) {
-          return _c("a", { attrs: { href: "/users/" + user.users.id } }, [
-            _c("img", {
-              class: "ui image avatar stargazer image-" + user.users.id,
-              attrs: {
-                src: user.users.avatar,
-                title: user.users.name,
-                alt: user.users.name
-              }
-            })
-          ])
-        })
-      ],
-      2
-    )
-  ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

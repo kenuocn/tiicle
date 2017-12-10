@@ -14,11 +14,10 @@
                     <span style="line-height: 34px;">{{$topic->title}}</span>
                     <div class="pull-right">
                         <div class="ui labeled button tiny">
-                            <div class="ui compact button tiny kb-star basic " data-act="unstar" data-id="387">
-
+                            <div class="ui compact button tiny kb-star basic " data-act="unstar" >
                                 <i class="thumbs up icon"></i> <span class="state">点赞</span>
                             </div>
-                            <a class="ui basic label star_count">12</a>
+                            <a class="ui basic label star_count">{{$topic->voted_count}}</a>
                         </div>
                     </div>
                 </h1>
@@ -54,51 +53,8 @@
             </div>
             <div class="clearfix"></div>
         </div>
-        <voted-topic-button topic="{{$topic->id}}"></voted-topic-button>
-        {{--<div class="ui message basic text-center voted-box">--}}
-            {{--<div class="buttons">--}}
-                {{--<div class="ui button kb-star-big basic teal  " data-act="star" data-id="387"><i class="icon thumbs up"></i> <span class="state">点赞</span></div>--}}
-            {{--</div>--}}
-            {{--<div class="voted-users">--}}
-                {{--<a href="https://tiicle.com/kotoyuuko">--}}
-                    {{--<img class="ui image avatar image-33 stargazer" src="https://omu8v0x3b.qnssl.com/uploads/avatars/507_1506052929.jpeg?imageView2/1/w/100/h/100">--}}
-                {{--</a>--}}
-                {{--<a href="https://tiicle.com/mengguosong">--}}
-                    {{--<img class="ui image avatar image-33 stargazer" src="https://omu8v0x3b.qnssl.com/uploads/avatars/143_1490831406.png?imageView2/1/w/100/h/100">--}}
-                {{--</a>--}}
-                {{--<a href="https://tiicle.com/bqx619">--}}
-                    {{--<img class="ui image avatar image-33 stargazer" src="https://omu8v0x3b.qnssl.com/uploads/avatars/117_1490768856.png?imageView2/1/w/100/h/100">--}}
-                {{--</a>--}}
-                {{--<a href="https://tiicle.com/tonyski">--}}
-                    {{--<img class="ui image avatar image-33 stargazer" src="https://omu8v0x3b.qnssl.com/uploads/avatars/483_1497431793.jpeg?imageView2/1/w/100/h/100">--}}
-                {{--</a>--}}
-                {{--<a href="https://tiicle.com/justcodingnobb">--}}
-                    {{--<img class="ui image avatar image-33 stargazer" src="https://omu8v0x3b.qnssl.com/uploads/avatars/457_1496555359.png?imageView2/1/w/100/h/100">--}}
-                {{--</a>--}}
-                {{--<a href="https://tiicle.com/weaving">--}}
-                    {{--<img class="ui image avatar image-33 stargazer" src="https://omu8v0x3b.qnssl.com/uploads/avatars/121_1490772024.jpeg?imageView2/1/w/100/h/100">--}}
-                {{--</a>--}}
-                {{--<a href="https://tiicle.com/luisedware">--}}
-                    {{--<img class="ui image avatar image-33 stargazer" src="https://omu8v0x3b.qnssl.com/uploads/avatars/78_1490693833.jpeg?imageView2/1/w/100/h/100">--}}
-                {{--</a>--}}
-                {{--<a href="https://tiicle.com/iwzh">--}}
-                    {{--<img class="ui image avatar image-33 stargazer" src="https://omu8v0x3b.qnssl.com/uploads/avatars/45_1490682761.jpeg?imageView2/1/w/100/h/100">--}}
-                {{--</a>--}}
-                {{--<a href="https://tiicle.com/jobsssss">--}}
-                    {{--<img class="ui image avatar image-33 stargazer" src="https://omu8v0x3b.qnssl.com/uploads/avatars/14_1491627905.png?imageView2/1/w/100/h/100">--}}
-                {{--</a>--}}
-                {{--<a href="https://tiicle.com/linzi007">--}}
-                    {{--<img class="ui image avatar image-33 stargazer" src="https://omu8v0x3b.qnssl.com/uploads/avatars/461_1506652130.jpg?imageView2/1/w/100/h/100">--}}
-                {{--</a>--}}
-                {{--<a href="https://tiicle.com/lybc">--}}
-                    {{--<img class="ui image avatar image-33 stargazer" src="https://omu8v0x3b.qnssl.com/uploads/avatars/30_1490680952.jpeg?imageView2/1/w/100/h/100">--}}
-                {{--</a>--}}
-                {{--<a href="https://tiicle.com/Summer">--}}
-                    {{--<img class="ui image avatar image-33 stargazer" src="https://omu8v0x3b.qnssl.com/uploads/avatars/1_1490496508.jpg?imageView2/1/w/100/h/100">--}}
-                {{--</a>--}}
-            {{--</div>--}}
 
-        {{--</div>--}}
+        <voted-topic-button topic="{{$topic->id}}"></voted-topic-button>
 
         <div class="ui threaded comments comment-list ">
 

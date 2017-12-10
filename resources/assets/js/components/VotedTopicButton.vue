@@ -1,5 +1,5 @@
 <template>
-   <div class="ui message basic text-center voted-box">
+   <div class="ui message basic text-center voted-box" id="voted-box">
        <div class="buttons">
            <div data-act="star" class="ui button kb-star-big basic "
                 :class="votedTopicd ? '' : 'teal'"
