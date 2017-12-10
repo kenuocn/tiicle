@@ -11,14 +11,25 @@
                 <h1>
                     <i class="grey file text outline icon"></i>
                     <span style="line-height: 34px;">{{$topic->title}}</span>
-                    <div class="pull-right">
-                        <div class="ui labeled button tiny">
-                            <div class="ui compact button tiny kb-star basic " data-act="unstar" >
-                                <i class="thumbs up icon"></i> <span class="state">点赞</span>
-                            </div>
-                            <a class="ui basic label star_count">{{$topic->voted_count}}</a>
+
+
+                    @can('update', $topic)
+                        <div class="ui right floated buttons">
+                            <a class="ui basic label" href="{{ route('topics.edit', $topic->id) }}"><i class="grey edit icon"></i></a>
+                            <a class="ui basic label" href="javascript:;" data-method="delete" data-url="{{ route('topics.destroy', $topic->id) }}" style="cursor:pointer;">
+                                <i class="grey trash icon"></i>
+                            </a>
                         </div>
-                    </div>
+                    @else
+                        <div class="pull-right">
+                            <div class="ui labeled button tiny">
+                                <div class="ui compact button tiny kb-star basic " data-act="unstar" >
+                                    <i class="thumbs up icon"></i> <span class="state">点赞</span>
+                                </div>
+                                <a class="ui basic label star_count">{{$topic->voted_count}}</a>
+                            </div>
+                        </div>
+                    @endcan
                 </h1>
                 <p class="article-meta">
                     <a class="ui basic image small label" href="{{route('users.show',$topic->user_id)}}"><img src="{{$topic->user->avatar}}"> {{$topic->user->name}} </a>

@@ -7,7 +7,12 @@ body {
 }
 
 a {
-    color: #4183C4;
+    color: #737373;
+}
+
+a:hover {
+    color: #737373;
+    text-decoration: none;
 }
 
 body.float-box {

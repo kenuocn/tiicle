@@ -72,4 +72,14 @@ class User extends Authenticatable
     {
         return !! $this->votedTopics()->where('topic_id',$topic)->count();
     }
+
+    /**
+     * 用户授权
+     * @param $model
+     * @return bool
+     */
+    public function isAuthorOf($model)
+    {
+        return $this->id == $model->user_id;
+    }
 }
