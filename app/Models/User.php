@@ -43,4 +43,33 @@ class User extends Authenticatable
     {
         return $this->hasMany(Topic::class);
     }
+
+    /**
+     * 定义用户话题投票关联
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function votedTopics()
+    {
+        return $this->belongsToMany(Topic::class,'user_topic')->withTimestamps();
+    }
+
+    /**
+     * 用户关注问题
+     * @param Topic $topic
+     * @return array
+     */
+    public function VotedTopicThis($topic)
+    {
+        return $this->votedTopics()->toggle($topic);
+    }
+
+    /**
+     * 判断用户是否投票了某个话题
+     * @param Topic $topic
+     * @return bool
+     */
+    public function  votedTopicd($topic)
+    {
+        return !! $this->votedTopics()->where('topic_id',$topic)->count();
+    }
 }

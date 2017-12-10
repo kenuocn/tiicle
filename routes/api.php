@@ -16,3 +16,14 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+/**前台*/
+Route::namespace('Api')->group(function () {
+
+    /**需要登录认证模块**/
+    Route::middleware(['auth:api','cors'])->group(function (){
+
+
+    });
+
+});

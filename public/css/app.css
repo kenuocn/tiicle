@@ -39974,6 +39974,10 @@ nav.ui.menu .item .label.notification.basic {
   float: left !important;
 }
 
+.text-center {
+  text-align: center;
+}
+
 /*--------------
      Pagination
 ---------------*/
@@ -40985,6 +40989,283 @@ body {
   .right.stackable.menu .item {
     width: auto !important;
   }
+}
+
+.revisions h1 {
+  font-size: 22px;
+  font-weight: normal;
+  margin-bottom: 30px;
+  line-height: 50px;
+  text-align: center;
+}
+
+del {
+  background: #fdd;
+  text-decoration: inherit;
+}
+
+ins {
+  background: #dfd;
+  color: #38731b;
+  text-decoration: inherit;
+}
+
+.diff-body {
+  border: 1px solid #d3e0e9;
+  border-radius: 4px;
+}
+
+.diff-body thead {
+  display: none;
+}
+
+.diff-body .Differences {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  empty-cells: show;
+}
+
+.diff-body .Differences thead th {
+  text-align: left;
+  border-bottom: 1px solid #000;
+  background: #aaa;
+  color: #000;
+  padding: 4px;
+}
+
+.diff-body .Differences tbody th {
+  text-align: center;
+  background: #f2faff;
+  width: 1em;
+  padding: 4px;
+  border-right: 1px solid #cbd1dc;
+  vertical-align: middle;
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.diff-body .Differences td {
+  padding: 4px 12px;
+  font-family: Consolas, monospace;
+  font-size: 13px;
+  line-height: 22px;
+  word-break: break-all;
+}
+
+.diff-body .DifferencesSideBySide .ChangeInsert td.Left {
+  background: #dfd;
+}
+
+.diff-body .DifferencesSideBySide .ChangeInsert td.Right {
+  background: #cfc;
+}
+
+.diff-body .DifferencesSideBySide .ChangeDelete td.Left {
+  background: #f88;
+}
+
+.diff-body .DifferencesSideBySide .ChangeDelete td.Right {
+  background: #faa;
+}
+
+.diff-body .DifferencesSideBySide .ChangeReplace .Left {
+  background: #fe9;
+}
+
+.diff-body .DifferencesSideBySide .ChangeReplace .Right {
+  background: #fd8;
+}
+
+.diff-body .Differences ins,
+.diff-body .Differences del {
+  text-decoration: none;
+}
+
+.diff-body .DifferencesSideBySide .ChangeReplace ins,
+.diff-body .DifferencesSideBySide .ChangeReplace del {
+  background: #fc0;
+}
+
+.diff-body .Differences .Skipped {
+  background: #f7f7f7;
+}
+
+.diff-body .DifferencesInline .ChangeReplace .Left,
+.diff-body .DifferencesInline .ChangeDelete .Left {
+  background: #fdd;
+}
+
+.diff-body .DifferencesInline .ChangeReplace .Right,
+.diff-body .DifferencesInline .ChangeInsert .Right {
+  background: #dfd;
+}
+
+.diff-body .DifferencesInline .ChangeReplace ins {
+  background: #9e9;
+}
+
+.diff-body .DifferencesInline .ChangeReplace del {
+  background: #ff9f9f;
+  color: #905959;
+}
+
+.diff-wrap {
+  padding: 15px;
+  border: 1px dashed #c0ced8;
+  border-radius: 4px;
+  margin: 40px 0;
+}
+
+.ui.message.basic {
+  background-color: #fff;
+}
+
+.ui.message.basic.error {
+  background-color: #FFF6F6;
+}
+
+.ui.message.basic.green {
+  background-color: #ebf9ed;
+}
+
+.ui.message.basic {
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: inherit;
+}
+
+.ui.divider > .icon {
+  margin-top: -3px;
+}
+
+img.tagged {
+  border-radius: 0px !important;
+}
+
+.duke-pulse.userguide {
+  left: 146px;
+  top: 40px;
+}
+
+.ui.statistics .statistic > .label,
+.ui.statistic > .label {
+  line-height: 28px;
+  text-transform: inherit;
+}
+
+.item.header .ui.three.statistics {
+  margin: 2em 0.5em -1em;
+}
+
+a.anchorific,
+a.anchorjs-link {
+  padding-left: 4px;
+  color: #e2e2e2;
+  font-weight: 100;
+  display: inline-block;
+}
+
+.notifications-index-page .ui.feed > .event > .content .summary {
+  font-weight: normal;
+}
+
+.social-share {
+  width: 100%;
+  display: inline;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.duke-pulse.patch-hint {
+  left: 700px;
+  top: 12px;
+}
+
+.duke-pulse.item-vote-guide {
+  left: 593px;
+  top: 34px;
+}
+
+.duke-pulse.item-versions-guide {
+  left: 0px;
+  top: -5px;
+}
+
+.relative {
+  position: relative;
+}
+
+.duke-pulse.item-patches-guide {
+  left: 0px;
+  top: -5px;
+}
+
+.swal2-modal {
+  font-family: inherit;
+}
+
+.hide,
+.hidden {
+  display: none;
+}
+
+.ui.feed .event .summary .title {
+  line-height: 26px;
+  font-size: 15px;
+}
+
+.tocify-hide {
+  display: none !important;
+}
+
+.ui.vertical.menu .item > i.icon.nofloat {
+  float: inherit;
+}
+
+.ui.form textarea {
+  line-height: 24px;
+}
+
+.ui.pagination.menu {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.ui.pagination.menu .item {
+  color: rgba(0, 0, 0, 0.52);
+}
+
+.ui.pagination.menu .active.item {
+  color: #c5c5c5;
+}
+
+.ui.message.basic.voted-box {
+  padding-top: 20px;
+  padding-bottom: 4px;
+}
+
+.ui.message.basic.voted-box .voted-users {
+  margin: 14px;
+  margin-bottom: 16px;
+}
+
+.ui.message.basic.voted-box .stargazer.ui.image.image-33 {
+  margin: 5px;
+  border: 1px solid #cecdcd;
+}
+
+.item-tags .ui.label > img.tagged {
+  margin: -0.8em -0.8em -0.6em .5em !important;
+}
+
+.item-tags .ui.tag.labels .label,
+.item-tags .ui.tag.label {
+  padding-right: 0.8em;
+  padding-left: 1em;
 }
 
 /*--------------

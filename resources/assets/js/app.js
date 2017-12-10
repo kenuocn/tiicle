@@ -2,8 +2,8 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
-
+/**话题关注组件**/
+Vue.component('voted-topic-button', require('./components/VotedTopicButton.vue'));
 
 const app = new Vue({
     el: '#app'

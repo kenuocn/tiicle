@@ -974,7 +974,8 @@ __webpack_require__(11);
 
 window.Vue = __webpack_require__(36);
 
-Vue.component('example-component', __webpack_require__(39));
+/**话题关注组件**/
+Vue.component('voted-topic-button', __webpack_require__(39));
 
 var app = new Vue({
     el: '#app'
@@ -42608,7 +42609,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/ExampleComponent.vue"
+Component.options.__file = "resources/assets/js/components/VotedTopicButton.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -42618,9 +42619,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7168fb6a", Component.options)
+    hotAPI.createRecord("data-v-ed24f644", Component.options)
   } else {
-    hotAPI.reload("data-v-7168fb6a", Component.options)
+    hotAPI.reload("data-v-ed24f644", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -42758,15 +42759,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+
+    props: ['topic'],
+
+    data: function data() {
+        return {
+            votedTopicd: false
+        };
+    },
     mounted: function mounted() {
-        console.log('Component mounted.');
+        var _this = this;
+
+        console.log(this.topic);
+        axios.get('/topics/' + this.topic + '/voted-topicd').then(function (response) {
+            _this.votedTopicd = response.data.data;
+        });
+    },
+
+
+    methods: {
+        voted: function voted() {
+            var _this2 = this;
+
+            axios.post('/topics/' + this.topic + '/voted').then(function (response) {
+                _this2.votedTopicd = response.data.data;
+                console.log(response.data);
+            });
+        }
     }
 });
 
@@ -42778,42 +42799,38 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0, false, false)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
-          _c("div", { staticClass: "panel panel-default" }, [
-            _c("div", { staticClass: "panel-heading" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "ui three buttons" }, [
-              _c("button", { staticClass: "ui active button" }, [
-                _vm._v("One")
-              ]),
-              _vm._v(" "),
-              _c("button", { staticClass: "ui button" }, [_vm._v("Two")]),
-              _vm._v(" "),
-              _c("button", { staticClass: "ui button" }, [_vm._v("Three")])
-            ])
+  return _c("div", { staticClass: "ui message basic text-center voted-box" }, [
+    _c("div", { staticClass: "buttons" }, [
+      _c(
+        "div",
+        {
+          staticClass: "ui button kb-star-big basic ",
+          class: { teal: !_vm.votedTopicd },
+          attrs: { "data-act": "star" },
+          on: {
+            click: function($event) {
+              _vm.voted()
+            }
+          }
+        },
+        [
+          _c("i", { staticClass: "icon thumbs up" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "state" }, [
+            _vm._v(_vm._s(_vm.votedTopicd ? "已点赞" : "点赞"))
           ])
-        ])
-      ])
+        ]
+      )
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7168fb6a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-ed24f644", module.exports)
   }
 }
 

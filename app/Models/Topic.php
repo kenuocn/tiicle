@@ -4,7 +4,7 @@ namespace App\Models;
 
 class Topic extends Model
 {
-    protected $fillable = ['title', 'body', 'category_id', 'excerpt', 'slug'];
+    protected $fillable = ['title', 'body', 'category_id', 'excerpt', 'slug','voted_count'];
 
     /**
      * 一个话题属于一个分类
@@ -22,6 +22,14 @@ class Topic extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function votedTopics()
+    {
+        return $this->belongsToMany(User::class,'user_topic')->withTimestamps();
     }
 
     /**

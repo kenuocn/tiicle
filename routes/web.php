@@ -29,9 +29,14 @@ Route::namespace('Home')->group(function () {
 
     Route::resource('users','UsersController',['only'=> ['index','create','show','store','update','edit','destroy'] ]); //个人中心
 
+    Route::get('topics/{topic}/voted-topicd','VotedTopicsController@votedTopicd'); //判断用户是否投票了某个话题
+
+    Route::post('topics/{topic}/voted','VotedTopicsController@voted');  //投票话题
+
     Route::resource('topics', 'TopicsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]); //话题
 
     Route::resource('categories', 'CategoriesController', ['only' => ['show']]);  //话题分类
 
     Route::post('uploads/topics_upload_image', 'UploadsController@topicsUploadImage')->name('uploads.topics_upload_image');  //话题图片上传
+
 });
