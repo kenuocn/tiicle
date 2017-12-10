@@ -1,5 +1,4 @@
 @extends('home.layouts.app')
-
 @section('title', $topic->title)
 @section('description', $topic->excerpt)
 @section('css')
@@ -53,8 +52,9 @@
             </div>
             <div class="clearfix"></div>
         </div>
-
-        <voted-topic-button topic="{{$topic->id}}"></voted-topic-button>
+        <div id="app">
+            <voted-topic-button topic="{{$topic->id}}"></voted-topic-button>
+        </div>
 
         <div class="ui threaded comments comment-list ">
 

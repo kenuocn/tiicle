@@ -50,8 +50,6 @@
             getVotedUsers () {
                 axios.get(`/topics/${this.topic}/voted-users`).then(response => {
                     this.votedUsers = response.data.data;
-                    console.log(this.votedUsers);
-                    console.log(response.data.data)
                 })
             }
         },

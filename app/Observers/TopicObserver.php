@@ -9,11 +9,6 @@ use App\Models\Topic;
 
 class TopicObserver
 {
-    public function creating(Topic $topic)
-    {
-        $topic->excerpt = make_excerpt($topic->body);
-    }
-
     /**
      * 过滤xss攻击
      * @param Topic $topic

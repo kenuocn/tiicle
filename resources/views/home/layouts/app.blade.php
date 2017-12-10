@@ -19,7 +19,7 @@
 </head>
 
 <body class="{{ route_class() }}-page">
-<div class="main container" id="app">
+<div class="main container">
 
     @include('home.layouts._header')
     @include('flash::message')
@@ -54,3 +54,4 @@
 </script>
 </body>
 </html>
+

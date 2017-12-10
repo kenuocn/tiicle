@@ -17,3 +17,4 @@ function make_excerpt($value, $length = 200)
     return str_limit($excerpt, $length);
 }
 
+
