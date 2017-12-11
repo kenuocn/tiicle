@@ -72,7 +72,6 @@ class Topic extends Model
      */
     public function link($params = [])
     {
-//        dd(11);
         return route('topics.show', array_merge([$this->id, $this->slug], $params));
     }
 }
