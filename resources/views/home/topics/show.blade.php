@@ -24,7 +24,7 @@
                         <div class="pull-right">
                             <div class="ui labeled button tiny">
                                 <div class="ui compact button tiny kb-star basic " data-act="unstar" >
-                                    <i class="thumbs up icon"></i> <span class="state">点赞</span>
+                                    <i class="thumbs up icon"></i> <span class="state">{{ Auth::user()->votedTopicd($topic->id) ? '已点赞' : '点赞' }}</span>
                                 </div>
                                 <a class="ui basic label star_count">{{$topic->voted_count}}</a>
                             </div>
@@ -141,8 +141,16 @@
 <script>
     $(document).ready(function()
     {
+//        var $config = {
+//            sites  : ['weibo','wechat',  'facebook', 'twitter', 'google','qzone', 'qq', 'douban']
+//        };
+
         var $config = {
-            sites  : ['weibo','wechat',  'facebook', 'twitter', 'google','qzone', 'qq', 'douban']
+            title               : '{{{ $topic->title }}} | from LC #laravel-china# {{ $topic->user->id != 1 ? '@kenuo' : '' }} {{ $topic->user->githu_name ? '@'.$topic->user->githu_name : '' }}',
+            wechatQrcodeTitle   : "微信扫一扫：分享", // 微信二维码提示文字
+            wechatQrcodeHelper  : '<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>',
+            image               : "https://dn-phphub.qbox.me/uploads/images/201701/29/1/pQimFCe1r5.png",
+            sites               : ['weibo','wechat',  'facebook', 'twitter', 'google','qzone', 'qq', 'douban'],
         };
 
         socialShare('.social-share', $config);
