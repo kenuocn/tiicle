@@ -36,8 +36,13 @@ class TopicsController extends Controller
      * @param Topic $topic
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(Topic $topic)
+    public function show(Request $request,Topic $topic)
     {
+         //URL 矫正
+        if ( ! empty($topic->slug) && $topic->slug != $request->slug) {
+            return redirect($topic->link(), 301);
+        }
+
         return view('home.topics.show', compact('topic'));
     }
 
@@ -66,7 +71,7 @@ class TopicsController extends Controller
 
         flash('发布话题成功')->success()->important();
 
-		return redirect()->route('topics.show', $topic->id);
+		return redirect()->to($topic->link());
 	}
 
     /**
@@ -95,7 +100,7 @@ class TopicsController extends Controller
 
         flash('编辑话题成功')->success()->important();
 
-		return redirect()->route('topics.show', $topic->id);
+		return redirect()->to($topic->link());
 	}
 
     /**

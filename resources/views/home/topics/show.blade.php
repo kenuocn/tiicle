@@ -12,7 +12,6 @@
                     <i class="grey file text outline icon"></i>
                     <span style="line-height: 34px;">{{$topic->title}}</span>
 
-
                     @can('update', $topic)
                         <div class="ui right floated buttons">
                             <a class="ui basic label" href="{{ route('topics.edit', $topic->id) }}"><i class="grey edit icon"></i></a>
