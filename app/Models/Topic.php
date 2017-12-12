@@ -33,6 +33,15 @@ class Topic extends Model
     }
 
     /**
+     * 一个话题有多个回复
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
+    /**
      * @param $query
      * @param $order
      * @return mixed

@@ -24,7 +24,9 @@ Route::post('/signup', 'Auth\AuthController@createNewUser')->name('signup');
 /**前台*/
 Route::namespace('Home')->group(function () {
 
-    Route::get('/', 'PagesController@root')->name('root');
+//    Route::get('/', 'PagesController@root')->name('root');
+
+    Route::get('/', 'TopicsController@index')->name('root');
 
     Route::get('users/profile','UsersController@profile')->name('users.profile'); //修改资料
 
@@ -45,3 +47,5 @@ Route::namespace('Home')->group(function () {
     Route::post('uploads/topics_upload_image', 'UploadsController@topicsUploadImage')->name('uploads.topics_upload_image');  //话题图片上传
 
 });
+
+Route::resource('replies', 'RepliesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);

@@ -47,6 +47,15 @@ class VotedTopicsController extends Controller
      */
     public function votedTopicd($topic)
     {
+        if(!Auth::user()->votedTopicd($topic))
+        {
+            return response()->json([
+                'status'=>true,
+                'message'=>'成功',
+                'data'=> false,
+            ]);
+        }
+
         return response()->json([
             'status'=>true,
             'message'=>'成功',
