@@ -6,6 +6,7 @@
 @stop
 @section('content')
     <div class="twelve wide column">
+        @include('home.common.error')
         <div class="ui segment article-content">
             <div class="extra-padding">
                 <h1>
@@ -53,17 +54,17 @@
                 <a href="#" class="social-share-icon icon-qq"></a>
                 <a href="#" class="social-share-icon icon-qzone"></a>
             </div>
-            <div class="pull-right" style="margin-top: 5px;">
-                <div class="ui labeled button ">
-                    <div class="ui compact floating watch  button  kb-watch basic " data-act="watch" data-id="387">
-                        <i class="eye icon"></i> <span class="state">关注</span>
-                    </div>
-                    <a class="ui basic label watch_count">0</a>
-                </div>
-                <span>
-                    <a class="ui button teal small basic" href="https://tiicle.com/items/387/patches/create"><i class="icon send"></i> 我要改进</a>
-                </span>
-            </div>
+            {{--<div class="pull-right" style="margin-top: 5px;">--}}
+                {{--<div class="ui labeled button ">--}}
+                    {{--<div class="ui compact floating watch  button  kb-watch basic " data-act="watch" data-id="387">--}}
+                        {{--<i class="eye icon"></i> <span class="state">关注</span>--}}
+                    {{--</div>--}}
+                    {{--<a class="ui basic label watch_count">0</a>--}}
+                {{--</div>--}}
+                {{--<span>--}}
+                    {{--<a class="ui button teal small basic" href="https://tiicle.com/items/387/patches/create"><i class="icon send"></i> 我要改进</a>--}}
+                {{--</span>--}}
+            {{--</div>--}}
             <div class="clearfix"></div>
         </div>
         <div id="app">
@@ -72,7 +73,7 @@
         {{-- 用户回复列表 --}}
         <div class="ui threaded comments comment-list ">
             <div id="comments"></div>
-            <div class="ui divider horizontal grey"><i class="icon comments"></i> 评论数量: 1</div>
+            <div class="ui divider horizontal grey"><i class="icon comments"></i> 评论数量: {{$topic->reply_count}}</div>
             @include('home.topics._reply_list', ['replies' => $topic->replies()->with('user')->get()])
             <br>
             @include('home.topics._reply_box', ['topic' => $topic])

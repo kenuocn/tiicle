@@ -40,12 +40,12 @@ Route::namespace('Home')->group(function () {
 
     Route::get('topics/{topic}/voted-users','VotedTopicsController@votedUsers');  //获取某个话题所有投票用户
 
-    Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
+    Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');  //话题seo优化路由
 
     Route::resource('categories', 'CategoriesController', ['only' => ['show']]);  //话题分类
+
+    Route::resource('replies', 'RepliesController', ['only' => ['store', 'destroy']]); //话题回复
 
     Route::post('uploads/topics_upload_image', 'UploadsController@topicsUploadImage')->name('uploads.topics_upload_image');  //话题图片上传
 
 });
-
-Route::resource('replies', 'RepliesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);

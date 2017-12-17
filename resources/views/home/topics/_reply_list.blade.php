@@ -15,6 +15,9 @@
                 </div>
                 <div class="reaction">
                     <div class="ui floating basic icon dropdown button" tabindex="0">
+                        @can('destroy', $reply)
+                        <a class="ui teal reply-btn" href="javascript:;" data-method="delete" data-url="{{ route('replies.destroy', $reply->id) }}" style="cursor:pointer;"><i class="grey trash icon"></i></a>
+                        @endcan
                         <a href="javascript:void(0)" onclick="replyOne('{{ $reply->user->name }}');" title="回复 {{ $reply->user->name }}" class="ui teal reply-btn" style="display: none;"><i class="icon reply"></i></a>
                         <div class="menu" tabindex="-1"></div></div>
                 </div>
