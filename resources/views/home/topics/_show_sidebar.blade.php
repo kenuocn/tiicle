@@ -3,15 +3,15 @@
         <div class="ui segment">
             <div class="ui three statistics">
                 <div class="ui huge statistic">
-                    <div class="value">3 </div>
+                    <div class="value">{{$topic->voted_count}} </div>
                     <div class="label">点赞</div>
                 </div>
                 <div class="ui huge statistic">
-                    <div class="value">148 </div>
+                    <div class="value">{{$topic->view_count}} </div>
                     <div class="label">浏览</div>
                 </div>
                 <div class="ui huge statistic">
-                    <div class="value">0 </div>
+                    <div class="value">{{$topic->reply_count}} </div>
                     <div class="label">评论</div>
                 </div>
             </div>
@@ -23,12 +23,12 @@
             <div class="ui fluid" style="margin-top: 20px;">
                 <div class="ui teal ribbon label"><i class="trophy icon"></i> 贡献 499 </div>
             </div>
-            <a href="https://tiicle.com/Summer" class="avatar-link">
-                <img class="ui centered circular tiny image " src="https://omu8v0x3b.qnssl.com/uploads/avatars/1_1490496508.jpg?imageView2/1/w/400/h/400">
+            <a href="{{route('users.show',$user->id)}}" class="avatar-link">
+                <img class="ui centered circular tiny image " src="{{$user->avatar}}">
             </a>
             <div class="extra content ui center aligned container">
-                <a class="header" href="https://tiicle.com/Summer">Summer</a>
-                <div class="description">Building Products Users Love</div>
+                <a class="header" href="{{route('users.show',$user->id)}}">{{$user->name}}</a>
+                <div class="description">{{$user->introduction}}</div>
             </div>
             <div class="extra content">
                 <button class=" ui basic teal button fluid follow" data-act="follow" data-id="1"><span class="state">关注</span></button>

@@ -43127,7 +43127,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     created: function created() {
         this.getVotedTopicd();
-        // 初始化页面获取所有点赞用户
+        this.getVotedUsers();
     },
 
 
@@ -43239,6 +43239,14 @@ $('#login-out').on('click', function (e) {
     kenuo.default.message.alert('', '将要退出登录？', 'warning', '退出', '取消', function () {
         e.preventDefault();
         $('#logout-form').submit();
+    });
+});
+
+/**公共提示要登录**/
+$('#login').on('click', function (e) {
+
+    kenuo.default.message.alert('', '需要登录以后才能执行此操作。', 'warning', '前往登录', '取消', function () {
+        location.href = '/login';
     });
 });
 

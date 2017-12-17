@@ -10,6 +10,14 @@ $('#login-out').on('click', function(e) {
 
 });
 
+/**公共提示要登录**/
+$('#login').on('click', function(e) {
+
+    kenuo.default.message.alert('','需要登录以后才能执行此操作。', 'warning','前往登录','取消', function (){
+        location.href = '/login';
+    });
+
+});
 
 /**公共删除内容*/
 $('[data-method]').append(function(){

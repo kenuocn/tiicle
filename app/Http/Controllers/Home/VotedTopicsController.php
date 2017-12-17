@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
-use Auth;
+ use Auth;
 use App\Models\Topic;
 use App\Models\VotedTopic;
 use App\Http\Controllers\Controller;

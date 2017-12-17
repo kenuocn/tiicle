@@ -30,7 +30,7 @@
         },
         created () {
             this.getVotedTopicd();
-            // 初始化页面获取所有点赞用户
+            this.getVotedUsers()
         },
 
         methods:{
