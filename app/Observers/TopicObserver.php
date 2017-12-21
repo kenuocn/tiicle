@@ -8,8 +8,7 @@ use App\Jobs\TranslateSlug;
 // creating, created, updating, updated, saving,
 // saved,  deleting, deleted, restoring, restored
 
-class TopicObserver
-{
+class TopicObserver {
     /**
      * 过滤xss攻击
      * @param Topic $topic
@@ -20,7 +19,7 @@ class TopicObserver
         $topic->body = clean($topic->body, 'user_topic_body');
 
         // 生成话题摘录
-        $topic->excerpt = make_excerpt($topic->body);
+        $topic->excerpt = make_excerpt($topic->body); 
 
     }
 
@@ -32,7 +31,7 @@ class TopicObserver
     public function saved(Topic $topic)
     {
         // 如 slug 字段无内容，即使用翻译器对 title 进行翻译
-        if ( ! $topic->slug) {
+        if ( !$topic->slug) {
 
             // 推送任务到队列
             dispatch(new TranslateSlug($topic));

@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-class Topic extends Model
-{
-    protected $fillable = ['title', 'body', 'category_id', 'excerpt', 'slug','voted_count'];
+class Topic extends Model {
+    protected $fillable = ['title', 'body', 'category_id', 'excerpt', 'slug', 'voted_count'];
 
     /**
      * 一个话题属于一个分类
@@ -29,7 +28,7 @@ class Topic extends Model
      */
     public function votedTopics()
     {
-        return $this->belongsToMany(User::class,'user_topic')->withTimestamps();
+        return $this->belongsToMany(User::class, 'user_topic')->withTimestamps();
     }
 
     /**
@@ -49,7 +48,7 @@ class Topic extends Model
     public function scopeWithOrder($query, $order)
     {
         // 不同的排序，使用不同的数据读取逻辑
-        switch ($order) {
+        switch ( $order ) {
             case 'recent':
                 $query = $this->recent();
                 break;
@@ -83,4 +82,5 @@ class Topic extends Model
     {
         return route('topics.show', array_merge([$this->id, $this->slug], $params));
     }
+
 }

@@ -19,10 +19,8 @@ namespace App\Observers;
 
 use App\Models\Category;
 
-class CategoryObserver
-{
-    public function saving(Category $category)
-    {
+class CategoryObserver {
+    public function saving(Category $category) {
         // 这样写扩展性更高，只有空的时候才指定默认头像
         if (empty($category->pic)) {
             $category->pic = '/uploads/categorys/category_default.png';

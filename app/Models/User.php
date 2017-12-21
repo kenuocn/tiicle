@@ -5,14 +5,12 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable {
     use Notifiable;
     use Traits\UserSocialiteHelper;
     use \Venturecraft\Revisionable\RevisionableTrait;
 
-    public static function boot()
-    {
+    public static function boot() {
         parent::boot();
     }
 
@@ -39,8 +37,7 @@ class User extends Authenticatable
      * 一个用户可以发布多个话题
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function topics()
-    {
+    public function topics() {
         return $this->hasMany(Topic::class);
     }
 
@@ -48,9 +45,8 @@ class User extends Authenticatable
      * 定义用户话题投票关联
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function votedTopics()
-    {
-        return $this->belongsToMany(Topic::class,'user_topic')->withTimestamps();
+    public function votedTopics() {
+        return $this->belongsToMany(Topic::class, 'user_topic')->withTimestamps();
     }
 
     /**
@@ -58,8 +54,7 @@ class User extends Authenticatable
      * @param Topic $topic
      * @return array
      */
-    public function VotedTopicThis($topic)
-    {
+    public function VotedTopicThis($topic) {
         return $this->votedTopics()->toggle($topic);
     }
 
@@ -68,9 +63,8 @@ class User extends Authenticatable
      * @param Topic $topic
      * @return bool
      */
-    public function  votedTopicd($topic)
-    {
-        return !! $this->votedTopics()->where('topic_id',$topic)->count();
+    public function votedTopicd($topic) {
+        return ! !$this->votedTopics()->where('topic_id', $topic)->count();
     }
 
     /**
@@ -78,8 +72,7 @@ class User extends Authenticatable
      * @param $model
      * @return bool
      */
-    public function isAuthorOf($model)
-    {
+    public function isAuthorOf($model) {
         return $this->id == $model->user_id;
     }
 
@@ -87,8 +80,7 @@ class User extends Authenticatable
      * 一个用户有多个评论
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function replies()
-    {
+    public function replies() {
         return $this->hasMany(Reply::class);
     }
 }

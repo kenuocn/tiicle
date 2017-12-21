@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Home;
 
 use App\Models\User;
 use App\Handlers\ImageUploadHandler;
-use App\Http\Requests\Home\UserRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Home\UserRequest;
 
 class UsersController extends Controller
 {
@@ -19,7 +19,7 @@ class UsersController extends Controller
 
 
     /**
-     * @param User $user
+     * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
@@ -44,6 +44,7 @@ class UsersController extends Controller
      * @param ImageUploadHandler $uploader
      * @param User $user
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(UserRequest $request,ImageUploadHandler $uploader,User $user)
     {
@@ -64,5 +65,11 @@ class UsersController extends Controller
         flash('修改资料成功')->success()->important();
 
         return redirect()->route('users.profile');
+    }
+
+
+    public function replies(User $user)
+    {
+        return view('home.users.show',compact('user'));
     }
 }

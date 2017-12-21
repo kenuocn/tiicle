@@ -41329,3 +41329,136 @@ a.normalize-link-color {
 
 
 
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.list-group .list-group-item {
+  padding: 0px 15px;
+  border: none;
+  margin-bottom: 0px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.list-group .list-group-item:first-child {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.users-replies-page .list-group .list-group-item {
+  padding: 10px 15px;
+  position: relative;
+}
+
+.users-replies-page .list-group .list-group-item .remove-padding-left {
+  padding-left: 0px !important;
+}
+
+.users-replies-page .list-group .list-group-item a {
+  color: #05a1a2;
+}
+
+.users-replies-page .list-group .list-group-item .item-meta {
+  position: absolute;
+  top: 20px;
+  right: 0;
+}
+
+.meta,
+.operate {
+  color: #d0d0d0;
+  font-size: 12px;
+}
+
+span.timeago {
+  color: #aaa;
+}
+
+.editor-preview-active-side,
+.editor-preview,
+.markdown-body,
+.markdown-reply {
+  font-size: 15px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  line-height: 1.3;
+  overflow: hidden;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.editor-preview-active-side > p,
+.editor-preview > p,
+.markdown-body > p,
+.markdown-reply > p {
+  margin-bottom: 8px;
+}
+
+.editor-preview-active-side p,
+.editor-preview-active-side blockquote,
+.editor-preview-active-side ul,
+.editor-preview-active-side ol,
+.editor-preview-active-side dl,
+.editor-preview-active-side table,
+.editor-preview-active-side pre,
+.editor-preview p,
+.editor-preview blockquote,
+.editor-preview ul,
+.editor-preview ol,
+.editor-preview dl,
+.editor-preview table,
+.editor-preview pre,
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre,
+.markdown-reply p,
+.markdown-reply blockquote,
+.markdown-reply ul,
+.markdown-reply ol,
+.markdown-reply dl,
+.markdown-reply table,
+.markdown-reply pre {
+  margin-top: 0;
+  margin-bottom: 0px;
+  line-height: 30px;
+}
+
+.editor-preview-active-side *,
+.editor-preview *,
+.markdown-body *,
+.markdown-reply * {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.editor-preview-active-side a,
+.editor-preview a,
+.markdown-body a,
+.markdown-reply a {
+  text-decoration: none;
+}
+
+.editor-preview-active-side a,
+.editor-preview a,
+.markdown-body a,
+.markdown-reply a {
+  background: transparent;
+}
+
+.editor-preview-active-side *,
+.editor-preview *,
+.markdown-body *,
+.markdown-reply * {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+

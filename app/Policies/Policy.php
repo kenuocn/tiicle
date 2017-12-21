@@ -4,19 +4,16 @@ namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class Policy
-{
+class Policy {
     use HandlesAuthorization;
 
-    public function __construct()
-    {
+    public function __construct() {
         //
     }
 
-    public function before($user, $ability)
-	{
-	    // if ($user->isSuperAdmin()) {
-	    // 		return true;
-	    // }
-	}
+    public function before($user, $ability) {
+        // if ($user->isSuperAdmin()) {
+        // 		return true;
+        // }
+    }
 }

@@ -5,11 +5,10 @@ namespace App\Http\Controllers\Home;
 use App\Models\Topic;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Http\Requests\Home\TopicRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Home\TopicRequest;
 
-class TopicsController extends Controller
-{
+class TopicsController extends Controller {
     /**
      * 用户授权
      * TopicsController constructor.
@@ -25,21 +24,21 @@ class TopicsController extends Controller
      * @param Topic $topic
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-	public function index(Request $request, Topic $topic)
-	{
-		$topics = $topic->withOrder($request->order)->paginate(30);
-		return view('home.topics.index', compact('topics'));
-	}
+    public function index(Request $request, Topic $topic)
+    {
+        $topics = $topic->withOrder($request->order)->paginate(30);
+        return view('home.topics.index', compact('topics'));
+    }
 
     /**
      * 展示某个话题
      * @param Topic $topic
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(Request $request,Topic $topic)
+    public function show(Request $request, Topic $topic)
     {
-         //URL 矫正
-        if ( ! empty($topic->slug) && $topic->slug != $request->slug) {
+        //URL 矫正
+        if ( !empty($topic->slug) && $topic->slug != $request->slug) {
             return redirect($topic->link(), 301);
         }
 
@@ -51,11 +50,11 @@ class TopicsController extends Controller
      * @param Topic $topic
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-	public function create(Topic $topic)
-	{
+    public function create(Topic $topic)
+    {
         $categories = Category::all();
         return view('home.topics.create_and_edit', compact('topic', 'categories'));
-	}
+    }
 
     /**
      * 发布话题
@@ -63,58 +62,62 @@ class TopicsController extends Controller
      * @param Topic $topic
      * @return \Illuminate\Http\RedirectResponse
      */
-	public function store(TopicRequest $request,Topic $topic)
-	{
-		$topic->fill($request->all());
+    public function store(TopicRequest $request, Topic $topic)
+    {
+        $topic->fill($request->all());
         $topic->user_id = auth()->id();
         $topic->save();
 
         flash('发布话题成功')->success()->important();
 
-		return redirect()->to($topic->link());
-	}
+        return redirect()->to($topic->link());
+    }
 
     /**
      * 展示编辑页面
      * @param Topic $topic
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-	public function edit(Topic $topic)
-	{
+    public function edit(Topic $topic)
+    {
         $this->authorize('update', $topic);
         $categories = Category::all();
 
-		return view('home.topics.create_and_edit', compact('topic','categories'));
-	}
+        return view('home.topics.create_and_edit', compact('topic', 'categories'));
+    }
 
     /**
      * 编辑话题
      * @param TopicRequest $request
      * @param Topic $topic
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-	public function update(TopicRequest $request, Topic $topic)
-	{
-		$this->authorize('update', $topic);
-		$topic->update($request->all());
+    public function update(TopicRequest $request, Topic $topic)
+    {
+        $this->authorize('update', $topic);
+        $topic->update($request->all());
 
         flash('编辑话题成功')->success()->important();
 
-		return redirect()->to($topic->link());
-	}
+        return redirect()->to($topic->link());
+    }
 
     /**
      * 删除话题
      * @param Topic $topic
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-	public function destroy(Topic $topic)
-	{
-		$this->authorize('destroy', $topic);
-		$topic->delete();
+    public function destroy(Topic $topic)
+    {
+        $this->authorize('destroy', $topic);
+        $topic->delete();
 
         flash('删除话题成功')->success()->important();
 
-		return redirect()->route('topics.index');
-	}
+        return redirect()->route('topics.index');
+    }
 }

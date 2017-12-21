@@ -75,20 +75,20 @@
             <div class="ui teal ribbon label"><i class="trophy icon"></i>贡献 0</div>
             <div class="content extra-padding">
                 <div class="ui attached tabular menu stackable">
-                    <a class="item active" data-tab="first" href="{{ route('users.show', $user->name)}}"><i class="icon list layout"></i>话题</a>
-                    <a class="item" data-tab="first" href="{{ route('users.show', $user->name)}}"><i class="icon feed"></i>动态</a>
-                    <a class="item " href="https://tiicle.com/kenuocn/items"><i class="icon file text outline"></i> 编程知识<span class="counter">0</span> </a>
-                    <a href="https://tiicle.com/kenuocn/followers" class="item "><i class="icon user"></i> 关注者 <span class="counter">0</span> </a>
-                    <a href="https://tiicle.com/kenuocn/stars" class="item "><i class="icon thumbs up"></i> 赞过 <span class="counter">2</span> </a>
+                    <a class="item {{ active_class(if_route('users.show', $user->id))}}" data-tab="first" href="{{ route('users.show', $user->id)}}"><i class="icon list layout"></i>话题</a>
+                    <a class="item {{ active_class(if_route('users.replies',$user->id))}}" href="{{ route('users.replies',$user->id)}}"><i class="icon feed"></i>回复</a>
+                    {{--<a class="item {{ active_class(if_route('users.replies',$user->id)}}" href="https://tiicle.com/kenuocn/items"><i class="icon file text outline"></i> 编程知识<span class="counter">0</span> </a>--}}
+                    {{--<a class="item {{ active_class(if_route('users.replies',$user->id)}}" href="https://tiicle.com/kenuocn/followers" ><i class="icon user"></i> 关注者 <span class="counter">0</span> </a>--}}
+                    {{--<a class="item {{ active_class(if_route('users.replies',$user->id)}}" href="https://tiicle.com/kenuocn/stars"><i class="icon thumbs up"></i> 赞过 <span class="counter">2</span> </a>--}}
                 </div>
-                {{--@if (if_query('tab', 'replies'))--}}
-                    {{--@include('users._replies', ['replies' => $user->replies()->with('topic')->recent()->paginate(5)])--}}
-                {{--@else--}}
+                @if (if_route('users.show',$user->id))
                     @include('home.users._topics', [
                         'topics' => $user->topics()->with('category')->recent()->paginate(10),
                         'user'=> $user
                     ])
-                {{--@endif--}}
+                @elseif(if_route('users.replies',$user->id))
+                    @include('home.users._replies', ['replies' => $user->replies()->with('topic')->recent()->paginate(10)])
+                @endif
             </div>
         </div>
     </div>

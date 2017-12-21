@@ -21,7 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::namespace('Api')->group(function () {
 
     /**需要登录认证模块**/
-    Route::middleware(['auth:api','cors'])->group(function (){
+    Route::middleware(['auth:api', 'cors'])->group(function () {
 
 
     });

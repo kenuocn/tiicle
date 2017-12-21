@@ -24,21 +24,21 @@ Route::post('/signup', 'Auth\AuthController@createNewUser')->name('signup');
 /**前台*/
 Route::namespace('Home')->group(function () {
 
-//    Route::get('/', 'PagesController@root')->name('root');
-
     Route::get('/', 'TopicsController@index')->name('root');
 
-    Route::get('users/profile','UsersController@profile')->name('users.profile'); //修改资料
+    Route::get('users/profile', 'UsersController@profile')->name('users.profile'); //修改资料
 
-    Route::resource('users','UsersController',['only'=> ['index','create','show','store','update','edit','destroy'] ]); //个人中心
+    Route::get('users/{user}/replies','UsersController@replies')->name('users.replies'); //修改资料);
 
-    Route::resource('topics', 'TopicsController', ['only' => ['index', 'create', 'store' , 'edit' , 'update', 'destroy']]); //话题
+    Route::resource('users', 'UsersController', ['only' => ['index', 'create', 'show', 'store', 'update', 'edit', 'destroy']]); //个人中心
 
-    Route::get('topics/{topic}/voted-topicd','VotedTopicsController@votedTopicd'); //判断用户是否投票了某个话题
+    Route::resource('topics', 'TopicsController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]); //话题
 
-    Route::post('topics/{topic}/voted','VotedTopicsController@voted');  //投票话题
+    Route::get('topics/{topic}/voted-topicd', 'VotedTopicsController@votedTopicd'); //判断用户是否投票了某个话题
 
-    Route::get('topics/{topic}/voted-users','VotedTopicsController@votedUsers');  //获取某个话题所有投票用户
+    Route::post('topics/{topic}/voted', 'VotedTopicsController@voted');  //投票话题
+
+    Route::get('topics/{topic}/voted-users', 'VotedTopicsController@votedUsers');  //获取某个话题所有投票用户
 
     Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');  //话题seo优化路由
 
