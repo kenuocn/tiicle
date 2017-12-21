@@ -27,6 +27,7 @@ class TopicsController extends Controller {
     public function index(Request $request, Topic $topic)
     {
         $topics = $topic->withOrder($request->order)->paginate(30);
+
         return view('home.topics.index', compact('topics'));
     }
 

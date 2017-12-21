@@ -21,7 +21,7 @@
     <div class="ui stackable cards">
         <div class="ui  card column author-box grid" style="margin-top: 20px;">
             <div class="ui fluid" style="margin-top: 20px;">
-                <div class="ui teal ribbon label"><i class="trophy icon"></i> 贡献 499 </div>
+                <div class="ui teal ribbon label"><i class="trophy icon"></i> 贡献 {{$user->contribution_count}} </div>
             </div>
             <a href="{{route('users.show',$user->id)}}" class="avatar-link">
                 <img class="ui centered circular tiny image " src="{{$user->avatar}}">

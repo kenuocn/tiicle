@@ -34,8 +34,10 @@
                 <a class="ui item" href="{{ route('topics.create') }}">
                     <i class="plus icon"></i>
                 </a>
-                <a class="item" href="#">
-                    <span class="ui basic circular label notification" id="notification-count">0</span>
+                <a class="item" href="{{ route('notifications.index') }}">
+                    <span class="ui basic circular label notification badge-{{ Auth::user()->notification_count > 0 ? 'hint' : '' }}">
+                        {{ Auth::user()->notification_count }}
+                    </span>
                 </a>
                 <div class="ui simple dropdown item stackable nav-user-item" tabindex="0">
                     <img class="ui avatar image" src="{{ Auth::user()->avatar }}">&nbsp;

@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use Auth;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable {
-    use Notifiable;
+    use Notifiable {
+        notify as protected laravelNotify;
+    }
     use Traits\UserSocialiteHelper;
     use \Venturecraft\Revisionable\RevisionableTrait;
 
@@ -82,5 +85,30 @@ class User extends Authenticatable {
      */
     public function replies() {
         return $this->hasMany(Reply::class);
+    }
+
+    public function notify($instance)
+    {
+        // 如果要通知的人是当前用户，就不必通知了！
+        /**
+         * 当前评论用户的id是否和当前登录用户的id一样
+         */
+        if ($this->id == Auth::id())
+        {
+            return;
+        }
+
+        $this->increment('notification_count');
+        $this->laravelNotify($instance);
+    }
+
+    /**
+     * 将通知总数清空
+     */
+    public function markAsRead()
+    {
+        $this->notification_count = 0;
+        $this->save();
+        $this->unreadNotifications->markAsRead();
     }
 }

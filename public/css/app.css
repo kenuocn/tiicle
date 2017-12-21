@@ -39718,6 +39718,11 @@ nav.ui.menu .item .label.notification.basic {
   border: none;
 }
 
+nav.ui.menu .item .label.notification.badge-hint {
+  background-color: #d15b47 !important;
+  border: none;
+}
+
 .ui.menu .text.item > *,
 .ui.menu .item > a:not(.ui),
 .ui.menu .item > p:only-child {

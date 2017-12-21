@@ -32,6 +32,8 @@ Route::namespace('Home')->group(function () {
 
     Route::resource('users', 'UsersController', ['only' => ['index', 'create', 'show', 'store', 'update', 'edit', 'destroy']]); //个人中心
 
+    Route::resource('notifications', 'NotificationsController', ['only' => ['index']]); //消息通知
+
     Route::resource('topics', 'TopicsController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]); //话题
 
     Route::get('topics/{topic}/voted-topicd', 'VotedTopicsController@votedTopicd'); //判断用户是否投票了某个话题
