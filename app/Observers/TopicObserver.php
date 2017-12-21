@@ -15,6 +15,9 @@ class TopicObserver {
      */
     public function saving(Topic $topic)
     {
+        /**发布话题时就自动增加一个贡献*/
+        $topic->user->increment('contribution_count');
+
         // XSS 过滤
         $topic->body = clean($topic->body, 'user_topic_body');
 
