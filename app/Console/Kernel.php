@@ -22,8 +22,8 @@ class Kernel extends ConsoleKernel {
      * @return void
      */
     protected function schedule(Schedule $schedule) {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        // 一小时执行一次『活跃用户』数据生成的命令
+        $schedule->command('tiicle:calculate-active-user')->hourly();
     }
 
     /**

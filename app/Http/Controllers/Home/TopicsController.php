@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Models\Topic;
+use App\Models\User;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -22,13 +23,15 @@ class TopicsController extends Controller {
      * 展示所有话题
      * @param Request $request
      * @param Topic $topic
+     * @param User $user
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(Request $request, Topic $topic)
+    public function index(Request $request, Topic $topic, User $user)
     {
         $topics = $topic->withOrder($request->order)->paginate(30);
+        $active_users = $user->getActiveUsers();
 
-        return view('home.topics.index', compact('topics'));
+        return view('home.topics.index', compact('topics','active_users'));
     }
 
     /**
@@ -38,6 +41,9 @@ class TopicsController extends Controller {
      */
     public function show(Request $request, Topic $topic)
     {
+        /**浏览一次.增加浏览总数*/
+        $topic->increment('view_count');
+
         //URL 矫正
         if ( !empty($topic->slug) && $topic->slug != $request->slug) {
             return redirect($topic->link(), 301);

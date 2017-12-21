@@ -3,15 +3,18 @@
 namespace App\Models;
 
 use Auth;
+use App\Models\Traits\ActiveUserHelper;
 use Illuminate\Notifications\Notifiable;
+use Venturecraft\Revisionable\RevisionableTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable {
     use Notifiable {
         notify as protected laravelNotify;
     }
+    use ActiveUserHelper;
+    use RevisionableTrait;
     use Traits\UserSocialiteHelper;
-    use \Venturecraft\Revisionable\RevisionableTrait;
 
     public static function boot() {
         parent::boot();
