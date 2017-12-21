@@ -24,9 +24,8 @@
     @include('home.layouts._header')
     @include('flash::message')
     {{--网页主体--}}
-    <div class="ui centered grid container stackable">
+    <div class="ui centered grid container stackable" id="app">
         @yield('content')
-
     </div>
     {{--end网页主体--}}
     <div class="push"></div>

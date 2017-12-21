@@ -5,8 +5,7 @@
                 <h4 class="ui inverted header">友站</h4>
                 <div class="ui inverted link list">
                     <a href="https://laravel-china.org/" class="item" target="_blank">Laravel China 社区</a>
-                    <a href="https://easywechat.org/" class="item" target="_blank">EasyWechat</a>
-                    <a class="item" href="https://yousails.com/" target="_blank">优帆远扬</a>
+                    <a href="https://www.mokeba.net/" class="item" target="_blank">魔客吧</a>
                 </div>
             </div>
             <div class="four wide column">
@@ -26,15 +25,13 @@
                 </p>
 
                 <p>
-                    <a class="ui teal button" href="https://tiicle.com/items/1/about-tiicle"><i class="icon idea "></i> 关于 Tiicle
+                    <a class="ui teal button" href="#"><i class="icon idea "></i> 关于 Tiicle
                     </a>
                 </p>
             </div>
         </div>
-
         <div class="ui inverted section divider"></div>
         <div>
-
             <a href="https://yousails.com/">
                 <img src="https://dn-phphub.qbox.me/uploads/images/201703/05/1/rMJ0Tq7fwf.png?imageView2/1/w/100/h/100" class="ui centered mini image">
             </a>

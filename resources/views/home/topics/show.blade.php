@@ -73,9 +73,7 @@
             {{--</div>--}}
             <div class="clearfix"></div>
         </div>
-        <div id="app">
-            <voted-topic-button topic="{{$topic->id}}"></voted-topic-button>
-        </div>
+        <voted-topic-button topic="{{$topic->id}}"></voted-topic-button>
         {{-- 用户回复列表 --}}
         <div class="ui threaded comments comment-list ">
             <div id="comments"></div>

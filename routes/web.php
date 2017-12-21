@@ -30,6 +30,10 @@ Route::namespace('Home')->group(function () {
 
     Route::get('users/{user}/replies','UsersController@replies')->name('users.replies'); //修改资料);
 
+    Route::get('users/{user}/is-following','UserFollowersController@isFollowing'); //判断是否关注了某个用户
+
+    Route::post('users/{user}/followed','UserFollowersController@followed'); //关注用户
+
     Route::resource('users', 'UsersController', ['only' => ['index', 'create', 'show', 'store', 'update', 'edit', 'destroy']]); //个人中心
 
     Route::resource('notifications', 'NotificationsController', ['only' => ['index']]); //消息通知

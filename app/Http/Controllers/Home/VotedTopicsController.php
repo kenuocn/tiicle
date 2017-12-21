@@ -71,7 +71,9 @@ class VotedTopicsController extends Controller
      */
     public function votedUsers(VotedTopic $votedTopic,$topic)
     {
-        $votedTopics = $votedTopic->with('users')->where('topic_id',$topic)->get();
+        $votedTopics = $votedTopic->with(['users'=>function($qurey){
+            return $qurey->select('id','name','avatar');
+        }])->where('topic_id',$topic)->get();
 
         return response()->json(['status'=>true, 'message'=>'成功', 'data'=> $votedTopics]);
     }

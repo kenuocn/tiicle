@@ -977,6 +977,9 @@ window.Vue = __webpack_require__(37);
 /**话题关注组件**/
 Vue.component('voted-topic-button', __webpack_require__(40));
 
+/**关注用户组件*/
+Vue.component('user-followers-button', __webpack_require__(58));
+
 var app = new Vue({
     el: '#app'
 });
@@ -43308,6 +43311,143 @@ var kenuo = function () {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(41)
+/* script */
+var __vue_script__ = __webpack_require__(59)
+/* template */
+var __vue_template__ = __webpack_require__(60)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/UserFollowersButton.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-26bef616", Component.options)
+  } else {
+    hotAPI.reload("data-v-26bef616", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 59 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    props: ['user'],
+
+    data: function data() {
+        return {
+            follow: false
+        };
+    },
+    created: function created() {
+        this.isFollowing();
+    },
+
+
+    methods: {
+        //关注
+        followed: function followed() {
+            var _this = this;
+
+            axios.post('/users/' + this.user + '/followed').then(function (response) {
+                _this.follow = response.data.data;
+            });
+        },
+        isFollowing: function isFollowing() {
+            var _this2 = this;
+
+            axios.get('/users/' + this.user + '/is-following').then(function (response) {
+                _this2.follow = response.data.data;
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      staticClass: " ui basic teal button fluid follow",
+      attrs: { "data-act": "follow" },
+      on: { click: _vm.followed }
+    },
+    [
+      _c("span", { staticClass: "state" }, [
+        _vm._v(_vm._s(_vm.follow ? "已关注" : "关注"))
+      ])
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-26bef616", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

@@ -90,6 +90,35 @@ class User extends Authenticatable {
         return $this->hasMany(Reply::class);
     }
 
+    /**
+     * 一个用户可以关注多个用户.一个用户也可以被多个用户关注
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function followers()
+    {
+        return $this->belongsToMany(self::class,'user_followers','follower_id','followed_id')->withTimestamps();
+    }
+
+    /**
+     * 关注用户
+     * @param $user
+     * @return array
+     */
+    public function toggleFollow($user)
+    {
+        return $this->followers()->toggle($user);
+    }
+
+    /**
+     * 判断是否关注了某个用户
+     * @param int $user_id
+     * @return bool
+     */
+    public function isFollowing(int $user_id)
+    {
+        return !!$this->followers()->where('followed_id',$user_id)->count();
+    }
+
     public function notify($instance)
     {
         // 如果要通知的人是当前用户，就不必通知了！

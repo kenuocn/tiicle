@@ -30,12 +30,14 @@
                 <a class="header" href="{{route('users.show',$user->id)}}">{{$user->name}}</a>
                 <div class="description">{{$user->introduction}}</div>
             </div>
+            @if($topic->user_id != Auth::user()->id)
             <div class="extra content">
-                <button class=" ui basic teal button fluid follow" data-act="follow" data-id="1"><span class="state">关注</span></button>
+                <user-followers-button user="{{$user->id}}"></user-followers-button>
                 <a href="https://tiicle.com/messages/to/1" class="ui basic button fluid" style="margin-top: 6px;">
                     <i class="icon envelope"></i> 私信
                 </a>
             </div>
+            @endif
         </div>
     </div>
     <div class="ui sticky" style="padding-top: 20px; width: 262px !important; height: 20px !important;">
