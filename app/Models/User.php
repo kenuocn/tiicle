@@ -27,7 +27,7 @@ class User extends Authenticatable {
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'real_name', 'password', 'github_id', 'github_name', 'github_url', 'city', 'company', 'website', 'introduction', 'avatar', 'register_source',
+        'name', 'email','gender', 'real_name', 'password', 'github_id', 'github_name', 'github_url', 'city', 'company', 'website', 'introduction', 'avatar', 'register_source',
     ];
 
     /**
@@ -117,6 +117,15 @@ class User extends Authenticatable {
     public function isFollowing(int $user_id)
     {
         return !!$this->followers()->where('followed_id',$user_id)->count();
+    }
+
+    /**
+     * 一个用户可以发送多个私信
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function messages()
+    {
+        return $this->hasMany(Message::class,'to_user_id');
     }
 
     public function notify($instance)

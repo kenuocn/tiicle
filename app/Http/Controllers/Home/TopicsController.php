@@ -8,8 +8,12 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Home\TopicRequest;
+use App\Http\Controllers\Home\Traits\Markdown;
 
 class TopicsController extends Controller {
+
+    use Markdown;
+
     /**
      * 用户授权
      * TopicsController constructor.
@@ -31,7 +35,7 @@ class TopicsController extends Controller {
         $topics = $topic->withOrder($request->order)->paginate(30);
         $active_users = $user->getActiveUsers();
 
-        return view('home.topics.index', compact('topics','active_users'));
+        return view('home.topics.index', compact('topics', 'active_users'));
     }
 
     /**
@@ -72,6 +76,8 @@ class TopicsController extends Controller {
     public function store(TopicRequest $request, Topic $topic)
     {
         $topic->fill($request->all());
+        $topic->body_original = remove_vue($request->get('body'));
+        $topic->body = $this->convertMarkdownToHtml($request->get('body'));
         $topic->user_id = auth()->id();
         $topic->save();
 
@@ -104,7 +110,10 @@ class TopicsController extends Controller {
     public function update(TopicRequest $request, Topic $topic)
     {
         $this->authorize('update', $topic);
-        $topic->update($request->all());
+        $topic->fill($request->all());
+        $topic->body_original = remove_vue($request->get('body'));
+        $topic->body = $this->convertMarkdownToHtml($request->get('body'));
+        $topic->save();
 
         flash('编辑话题成功')->success()->important();
 

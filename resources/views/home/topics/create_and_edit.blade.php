@@ -1,7 +1,7 @@
 @extends('home.layouts.app')
 @section('title', isset($topic->id) ? '编辑话题'  : ' 新建话题')
 @section('css')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/editor.css') }}">
 @stop
 @section('content')
     <div class="fourteen column">
@@ -25,7 +25,7 @@
                     </div>
                     <span class="duke-pulse editor-fullscreen"></span>
                     <div class="field">
-                        <textarea rows="15" id="editor" name="body" placeholder="请使用 Markdown 编写" required="">{{ old('body', $topic->body ) }}</textarea>
+                        <textarea rows="15" id="editor" name="body" placeholder="请使用 Markdown 编写" required="">{{old('body', $topic->body_original )}}</textarea>
                     </div>
                     <div class="ui message">
                         <button type="submit" class="ui button teal publish-btn"><i class="icon send"></i> 发布</button>
@@ -35,28 +35,71 @@
         </div>
     </div>
 @section('scripts')
-<script type="text/javascript"  src="{{ asset('js/module.js') }}"></script>
-<script type="text/javascript"  src="{{ asset('js/hotkeys.js') }}"></script>
-<script type="text/javascript"  src="{{ asset('js/uploader.js') }}"></script>
-<script type="text/javascript"  src="{{ asset('js/simditor.js') }}"></script>
+<script type="text/javascript"  src="{{ asset('js/editor.js') }}"></script>
 <script>
     $(document).ready(function(){
 
-        toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment'];
-
-        var editor = new Simditor({
-            textarea: $('#editor'),
-
-            defaultImage: '../images/image.png',
-            toolbar: toolbar,
-            upload: {
-                url: '{{ route('uploads.topics_upload_image') }}',
-                params: { _token: '{{ csrf_token() }}' },
-                fileKey: 'upload_file',
-                connectionCount: 3,
-                leaveConfirm: '文件上传中，关闭此页面将取消上传。'
+        var simplemde = new SimpleMDE({
+            spellChecker: false,
+            autosave: {
+                enabled: true,
+                delay: 5000,
+                unique_id: "topic_content{{ isset($topic) ? $topic->id . '_' . str_slug($topic->updated_at) : '' }}"
             },
-            pasteImage: true,
+            forceSync: true,
+            tabSize: 4,
+            toolbar: [
+                "bold", "italic", "heading", "|", "quote", "code", "table",
+                "horizontal-rule", "unordered-list", "ordered-list", "|",
+                "link", "image", "|",  "side-by-side", 'fullscreen', "|",
+                {
+                    name: "guide",
+                    action: function customFunction(editor){
+                        var win = window.open('https://github.com/riku/Markdown-Syntax-CN/blob/master/syntax.md', '_blank');
+                        if (win) {
+                            //Browser has allowed it to be opened
+                            win.focus();
+                        } else {
+                            //Browser has blocked it
+                            alert('Please allow popups for this website');
+                        }
+                    },
+                    className: "fa fa-info-circle",
+                    title: "Markdown 语法！",
+                },
+                {
+                    name: "publish",
+                    action: function customFunction(editor){
+                        $('#topic-submit').click();
+                    },
+                    className: "fa fa-paper-plane",
+                    title: "发布话题",
+                }
+            ],
+        });
+
+        inlineAttachment.editors.codemirror4.attach(simplemde.codemirror, {
+            uploadUrl:'{{ route('uploads.topics_upload_image') }}',
+            extraParams: {
+                '_token': '{{ csrf_token() }}',
+            },
+            onFileUploadResponse: function(xhr) {
+                var result = JSON.parse(xhr.responseText),
+                    filename = result[this.settings.jsonFieldName];
+
+                if (result && filename) {
+                    var newValue;
+                    if (typeof this.settings.urlText === 'function') {
+                        newValue = this.settings.urlText.call(this, filename, result);
+                    } else {
+                        newValue = this.settings.urlText.replace(this.filenameTag, filename);
+                    }
+                    var text = this.editor.getValue().replace(this.lastValue, newValue);
+                    this.editor.setValue(text);
+                    this.settings.onFileUploaded.call(this, filename);
+                }
+                return false;
+            }
         });
     });
 </script>

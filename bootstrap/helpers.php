@@ -15,4 +15,16 @@ function make_excerpt($value, $length = 200) {
     return str_limit($excerpt, $length);
 }
 
+/**
+ * 去除vue双花括号冲突
+ * @param $body
+ * @return mixed
+ */
+function remove_vue($body)
+{
+    $body = str_replace("{{","",$body);
+    $body = str_replace("}}","",$body);
+
+    return $body;
+}
 

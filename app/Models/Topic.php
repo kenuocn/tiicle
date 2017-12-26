@@ -3,7 +3,7 @@
 namespace App\Models;
 
 class Topic extends Model {
-    protected $fillable = ['title', 'body', 'category_id', 'excerpt', 'slug', 'voted_count'];
+    protected $fillable = ['title', 'body', 'body_original', 'category_id', 'excerpt', 'slug', 'voted_count'];
 
     /**
      * 一个话题属于一个分类

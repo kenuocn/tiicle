@@ -16,6 +16,17 @@
                         <label for="name-field">用户名（唯一标示，请谨慎修改）</label>
                         <input class="form-control" type="text" name="name" id="name-field"  value="{{$user->name}}" required="">
                     </div>
+                    <div class="field">
+                        <label for="name-field">性别</label>
+                        <div class="ui radio checkbox checked">
+                            <input type="radio" name="gender" value="1" @if($user->gender == 1) checked @endif>
+                            <label>男</label>
+                        </div>
+                        <div class="ui radio checkbox checked">
+                            <input type="radio" name="gender" value="2" @if($user->gender == 2) checked @endif>
+                            <label>女</label>
+                        </div>
+                    </div>
                     <div class="required field">
                         <label for="name-field">邮箱</label>
                         <input class="form-control" type="text" name="email" id="email-field" value="{{$user->email}}" required="">

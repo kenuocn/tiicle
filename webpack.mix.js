@@ -15,4 +15,6 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .copyDirectory('resources/assets/editor/js', 'public/js')
     .copyDirectory('resources/assets/editor/css', 'public/css')
     .copyDirectory('resources/assets/images', 'public/images')
-    .sass('resources/assets/sass/app.scss', 'public/css');
+    mix.js('resources/assets/js/vendor/simplemde.min.js', 'public/js/editor.js')
+    mix.sass('resources/assets/sass/vendor/simplemde.min.scss', 'public/css/editor.css');
+
