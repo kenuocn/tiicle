@@ -12,10 +12,14 @@
         data(){
             return {
                 follow: false,
+                user_id: Config.user_id,
             }
         },
         created () {
-            this.isFollowing();
+            if(this.user_id != 0)
+            {
+                this.isFollowing();
+            }
         },
 
         methods:{
@@ -23,6 +27,21 @@
             followed (){
                 axios.post(`/users/${this.user}/followed`).then(response => {
                     this.follow = response.data.data;
+                }).catch(function (error) {
+                    if (error.response.status == 401) {
+                        swal({
+                            title: '',
+                            text: '需要登录以后才能执行此操作。',
+                            type: 'warning',
+                            showCancelButton: true,
+                            cancelButtonText: '取消',
+                            confirmButtonText: '前往登录',
+                        }).then(function () {
+                            location.href = '/login';
+                        });
+
+                        return false;
+                    }
                 })
             },
 

@@ -8,18 +8,24 @@ use App\Http\Controllers\Controller;
 
 class UserFollowersController extends Controller
 {
+
+
+    /**
+     * UserFollowersController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function followed(User $user)
     {
         $followed = Auth::user()->toggleFollow($user);
 
         if(!empty($followed['attached']))
         {
-//            $followed->increment('voted_count');
-
             return response()->json(['status'=>true, 'message'=>'成功', 'data'=> true]);
         }
-
-//        $followed->decrement('voted_count');
 
         return response()->json(['status'=>true, 'message'=>'成功', 'data'=> false]);
     }

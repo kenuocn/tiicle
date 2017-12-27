@@ -10,9 +10,9 @@
             <a class="item {{ active_class(if_route('notifications.index'))}}" href="{{route('notifications.index')}}">
                 <i class="icon bell nofloat grey"></i> &nbsp;通知
             </a>
-            <a class="item " href="https://tiicle.com/messages">
-                <i class="icon envelope nofloat grey"></i> &nbsp;私信
-            </a>
+            {{--<a class="item " href="https://tiicle.com/messages">--}}
+                {{--<i class="icon envelope nofloat grey"></i> &nbsp;私信--}}
+            {{--</a>--}}
         </div>
     </div>
     <div class="twelve wide column">

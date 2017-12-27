@@ -45,3 +45,9 @@ $('[data-method]').append(function(){
     }
 
 });
+
+function login() {
+    kenuo.default.message.alert('','需要登录以后才能执行此操作。', 'warning','前往登录','取消', function (){
+        location.href = '/login';
+    });
+}

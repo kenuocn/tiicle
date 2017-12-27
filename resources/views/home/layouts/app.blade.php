@@ -17,6 +17,12 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('css')
+
+    <script>
+        var Config = {
+            'user_id': '{{Auth::user() ? Auth::user() : 0}}',
+        };
+    </script>
 </head>
 
 <body class="{{ route_class() }}-page">
@@ -52,6 +58,7 @@
             ;
         })
     ;
+
 </script>
 </body>
 </html>

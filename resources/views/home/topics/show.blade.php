@@ -3,7 +3,7 @@
 @section('description', $topic->excerpt)
 @section('css')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css" rel="stylesheet">
-    <link href="{{ asset('css/prism.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/css/prism.css') }}" rel="stylesheet">
 @stop
 @section('content')
     <div class="twelve wide column">
@@ -78,7 +78,7 @@
     @include('home.topics._show_sidebar',['user'=> $topic->user,'topic' => $topic])
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
-<script src=" {{ asset('js/prism.js') }}"></script>
+<script src=" {{ asset('vendor/js/prism.js') }}"></script>
 <script>
     $(document).ready(function () {
         var $config = {

@@ -7,14 +7,13 @@ use App\Handlers\ImageUploadHandler;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Home\UserRequest;
 
-class UsersController extends Controller
-{
+class UsersController extends Controller {
     /**
      * UsersController constructor.
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['show']]);
+        $this->middleware('auth', ['except' => ['show', 'replies']]);
     }
 
 
@@ -27,7 +26,7 @@ class UsersController extends Controller
 
         $user = User::with('topics')->find($id);
 
-        return view('home.users.show',compact('user'));
+        return view('home.users.show', compact('user'));
     }
 
 
@@ -35,7 +34,7 @@ class UsersController extends Controller
     {
         $user = auth()->user();
         $this->authorize('update', $user);
-        return view('home.users.profile',compact('user'));
+        return view('home.users.profile', compact('user'));
     }
 
     /**
@@ -46,15 +45,14 @@ class UsersController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(UserRequest $request,ImageUploadHandler $uploader,User $user)
+    public function update(UserRequest $request, ImageUploadHandler $uploader, User $user)
     {
         $this->authorize('update', $user);
 
         $user->fill($request->all());
 
-        if ($request->avatar)
-        {
-            $result = $uploader->save($request->avatar, 'avatars', $user->id,362);
+        if ($request->avatar) {
+            $result = $uploader->save($request->avatar, 'avatars', $user->id, 362);
             if ($result) {
                 $user->avatar = $result['path'];
             }
@@ -70,6 +68,6 @@ class UsersController extends Controller
 
     public function replies(User $user)
     {
-        return view('home.users.show',compact('user'));
+        return view('home.users.show', compact('user'));
     }
 }

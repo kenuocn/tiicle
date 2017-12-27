@@ -1,9 +1,5 @@
 @extends('home.layouts.app')
 @section('title', isset($topic->id) ? '编辑话题'  : ' 新建话题')
-@section('css')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/editor.css') }}">
-    <link href="{{ asset('css/prism.css') }}" rel="stylesheet">
-@stop
 @section('content')
     <div class="fourteen column">
         <div class="ui segment">
@@ -40,8 +36,6 @@
         </div>
     </div>
 @section('scripts')
-    <script type="text/javascript" src="{{ asset('js/editor.js') }}"></script>
-    <script src=" {{ asset('js/prism.js') }}"></script>
     <script>
 
         $(document).ready(function () {

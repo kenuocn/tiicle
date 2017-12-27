@@ -1,11 +1,14 @@
-html,
+html {
+  height: 100%;
+}
+
 body {
   /* for sticky footer */
-  height: 100%;
+  //height: 100%;
   font-size: 14px;
   color: #525252;
-  font-family: NotoSansHans-Regular,AvenirNext-Regular,arial,Hiragino Sans GB,"Microsoft Yahei","Hiragino Sans GB","WenQuanYi Micro Hei",sans-serif;
-  background: #f0f2f5;
+  background-color: #f0f2f5;
+  font-family: NotoSansHans-Regular, AvenirNext-Regular, arial, Hiragino Sans GB, "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
 }
 
 a {
@@ -106,12 +109,12 @@ nav.ui.menu {
 }
 
 .mt150 {
-   margin-top: 150px;
- }
+  margin-top: 150px;
+}
 
 .mb100 {
-   margin-bottom: 100px;
- }
+  margin-bottom: 100px;
+}
 
 /*--------------
      Footer
