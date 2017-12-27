@@ -1,8 +1,8 @@
-@extends('home.layouts.app')
+@extends('home.auth.app')
 @section('title', '注册用户')
 @section('content')
 
-    <div class="six wide column">
+    <div class="six wide column mt150 mb100">
         <div class="ui stacked segment">
             <div class="content">
                 <h2>注册新用户</h2>

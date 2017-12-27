@@ -62,7 +62,6 @@
 
                 <div class="extra content">
                     <user-followers-button user="{{$user->id}}"></user-followers-button>
-                    {{--<button class=" ui basic teal button fluid follow" data-act="follow" data-id="{{$user->id}}"><span class="state">关注</span></button>--}}
                 </div>
             </div>
         </div>

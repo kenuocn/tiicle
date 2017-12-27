@@ -3,6 +3,7 @@
 @section('description', $topic->excerpt)
 @section('css')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css" rel="stylesheet">
+    <link href="{{ asset('css/prism.css') }}" rel="stylesheet">
 @stop
 @section('content')
     <div class="twelve wide column">
@@ -60,17 +61,6 @@
                 <a href="#" class="social-share-icon icon-qq"></a>
                 <a href="#" class="social-share-icon icon-qzone"></a>
             </div>
-            {{--<div class="pull-right" style="margin-top: 5px;">--}}
-            {{--<div class="ui labeled button ">--}}
-            {{--<div class="ui compact floating watch  button  kb-watch basic " data-act="watch" data-id="387">--}}
-            {{--<i class="eye icon"></i> <span class="state">关注</span>--}}
-            {{--</div>--}}
-            {{--<a class="ui basic label watch_count">0</a>--}}
-            {{--</div>--}}
-            {{--<span>--}}
-            {{--<a class="ui button teal small basic" href="https://tiicle.com/items/387/patches/create"><i class="icon send"></i> 我要改进</a>--}}
-            {{--</span>--}}
-            {{--</div>--}}
             <div class="clearfix"></div>
         </div>
         <voted-topic-button topic="{{$topic->id}}"></voted-topic-button>
@@ -87,18 +77,19 @@
     {{-- 右边栏 --}}
     @include('home.topics._show_sidebar',['user'=> $topic->user,'topic' => $topic])
 @section('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            var $config = {
-                title: '{{{ $topic->title }}} | from LC #laravel-china# {{ $topic->user->id != 1 ? '@kenuo' : '' }} {{ $topic->user->githu_name ? '@'.$topic->user->githu_name : '' }}',
-                wechatQrcodeTitle: "微信扫一扫：分享", // 微信二维码提示文字
-                wechatQrcodeHelper: '<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>',
-                image: "https://dn-phphub.qbox.me/uploads/images/201701/29/1/pQimFCe1r5.png",
-                sites: ['weibo', 'wechat', 'qzone', 'qq'],
-            };
-            socialShare('.social-share', $config);
-        });
-    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+<script src=" {{ asset('js/prism.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        var $config = {
+            title: '{{{ $topic->title }}} | from LC #laravel-china# {{ $topic->user->id != 1 ? '@kenuo' : '' }} {{ $topic->user->githu_name ? '@'.$topic->user->githu_name : '' }}',
+            wechatQrcodeTitle: "微信扫一扫：分享", // 微信二维码提示文字
+            wechatQrcodeHelper: '<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>',
+            image: "https://dn-phphub.qbox.me/uploads/images/201701/29/1/pQimFCe1r5.png",
+            sites: ['weibo', 'wechat', 'qzone', 'qq'],
+        };
+        socialShare('.social-share', $config);
+    });
+</script>
 @stop
 @stop
