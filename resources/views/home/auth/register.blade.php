@@ -38,6 +38,9 @@
                     <button class="ui primary teal button fluid" type="submit">
                         <i class="save icon"></i>立即注册
                     </button>
+                    <div class="ui horizontal divider">Or</div>
+
+                    <a class="ui basic teal button fluid" href="{{route('login.github',['driver'=>'github'])}}"><i class="icon github alternate"></i> Github 注册</a>
                 </form>
             </div>
         </div>

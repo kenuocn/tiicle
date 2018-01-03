@@ -12,6 +12,7 @@
     "VentureCraft/revisionable": "^1.28",
     "arcanedev/log-viewer": "^4.4",
     "barryvdh/laravel-cors": "^0.10.0",
+    "encore/redis-manager": "^0.1.0",
     "erusev/parsedown": "^1.6",
     "fideloper/proxy": "~3.3",
     "guzzlehttp/guzzle": "~6.3",

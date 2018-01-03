@@ -20,7 +20,7 @@ function make_excerpt($value, $length = 200) {
  * @param $body
  * @return mixed
  */
-function remove_vue($body)
+function remove_vue($body = null)
 {
     $body = str_replace("{{","",$body);
     $body = str_replace("}}","",$body);
