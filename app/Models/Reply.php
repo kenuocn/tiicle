@@ -12,13 +12,15 @@ namespace App\Models;
  * @mixin \Eloquent
  */
 class Reply extends Model {
+
     protected $fillable = ['content'];
 
     /**
      * 一个回复属于一个话题
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function topic() {
+    public function topic()
+    {
         return $this->belongsTo(Topic::class);
     }
 
@@ -26,7 +28,8 @@ class Reply extends Model {
      * 一个回复属于一个作者
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 }

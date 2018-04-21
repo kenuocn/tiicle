@@ -9,10 +9,11 @@ window._ = require('lodash');
 
 try {
     window.$ = window.jQuery = require('jquery');
-    window.swal = require('./vendor/sweetalert.min');
-    window.SimpleMDE = require('./vendor/simplemde.min');
-    require('./vendor/semantic');
-    require('./vendor/particles.min');
+    window.swal = require('./vendor/sweetalert.min');  // sweetalert提示框
+    window.SimpleMDE = require('./vendor/simplemde.min');  // simplemde编辑器
+    require('./vendor/semantic');  // semantic ui
+    require('./vendor/particles.min'); // 登录动画效果
+    require('./vendor/jquery.tocify.min')  // tocify生成导航
 } catch (e) {}
 
 /**
