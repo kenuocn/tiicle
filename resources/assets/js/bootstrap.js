@@ -1,4 +1,3 @@
-
 window._ = require('lodash');
 
 /**
@@ -13,8 +12,8 @@ try {
     window.SimpleMDE = require('./vendor/simplemde.min');  // simplemde编辑器
     require('./vendor/semantic');  // semantic ui
     require('./vendor/particles.min'); // 登录动画效果
-    require('./vendor/jquery.tocify.min')  // tocify生成导航
-} catch (e) {}
+} catch (e) {
+}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

@@ -38,8 +38,8 @@
             </div>
         </div>
     </div>
-    <div class="ui sticky" style="padding-top: 20px; width: 262px !important; height: 20px !important;">
-        <div class="ui  card column author-box grid  tocify-hide" id="toc">
+    <div class=" ui sticky" style="padding-top: 20px; width: 262px !important; height: 26px !important;">
+        <div class="ui card column author-box grid tocify" id="toc">
         </div>
     </div>
 </div>

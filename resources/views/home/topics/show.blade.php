@@ -4,6 +4,7 @@
 @section('css')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css" rel="stylesheet">
     <link href="{{ asset('vendor/css/prism.css') }}" rel="stylesheet">
+    <link href="{{asset('vendor/css/jquery.tocify.css')}}" rel="stylesheet">
 @stop
 @section('content')
     <div class="twelve wide column">
@@ -80,6 +81,8 @@
 @section('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
     <script src=" {{ asset('vendor/js/prism.js') }}"></script>
+    <script src="{{ asset('vendor/js/jquery-ui.min.js') }}"></script>
+    <script src="{{asset('vendor/js/jquery.tocify.min.js')}}"></script>
     <script>
         $(document).ready(function () {
             var $config = {
@@ -90,12 +93,26 @@
                 sites: ['weibo', 'wechat', 'qzone', 'qq'],
             };
             socialShare('.social-share', $config);
+
+            $("#toc").closest('.sticky').visibility({
+                type: 'fixed',
+            });
+
+            $("#toc").tocify({
+                selectors: "h2,h3,h4,h5,h6", //文章节点，可以关联生成目录
+                showAndHide: true, //是否展示二级目录结构
+                showEffect: "slideDown",
+                theme: "bootstrap",
+            });
+
         });
 
         // 增加行号
         $('pre').addClass("line-numbers").css("white-space", "pre-wrap");
 
         var html = '<div class="window-controls"><i class="red"></i><i class="yellow"></i><i class="green"></i></div>';
-        $('pre').prepend(html)
+        $('pre').prepend(html);
+
+
     </script>
 @stop
