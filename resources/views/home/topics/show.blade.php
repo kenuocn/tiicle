@@ -76,20 +76,26 @@
 
     {{-- 右边栏 --}}
     @include('home.topics._show_sidebar',['user'=> $topic->user,'topic' => $topic])
-@section('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
-<script src=" {{ asset('vendor/js/prism.js') }}"></script>
-<script>
-    $(document).ready(function () {
-        var $config = {
-            title: '{{{ $topic->title }}} | from LC #laravel-china# {{ $topic->user->id != 1 ? '@kenuo' : '' }} {{ $topic->user->githu_name ? '@'.$topic->user->githu_name : '' }}',
-            wechatQrcodeTitle: "微信扫一扫：分享", // 微信二维码提示文字
-            wechatQrcodeHelper: '<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>',
-            image: "https://dn-phphub.qbox.me/uploads/images/201701/29/1/pQimFCe1r5.png",
-            sites: ['weibo', 'wechat', 'qzone', 'qq'],
-        };
-        socialShare('.social-share', $config);
-    });
-</script>
 @stop
+@section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+    <script src=" {{ asset('vendor/js/prism.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            var $config = {
+                title: '{{{ $topic->title }}} | from LC #laravel-china# {{ $topic->user->id != 1 ? '@kenuo' : '' }} {{ $topic->user->githu_name ? '@'.$topic->user->githu_name : '' }}',
+                wechatQrcodeTitle: "微信扫一扫：分享", // 微信二维码提示文字
+                wechatQrcodeHelper: '<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>',
+                image: "https://dn-phphub.qbox.me/uploads/images/201701/29/1/pQimFCe1r5.png",
+                sites: ['weibo', 'wechat', 'qzone', 'qq'],
+            };
+            socialShare('.social-share', $config);
+        });
+
+        // 增加行号
+        $('pre').addClass("line-numbers").css("white-space", "pre-wrap");
+
+        var html = '<div class="window-controls"><i class="red"></i><i class="yellow"></i><i class="green"></i></div>';
+        $('pre').prepend(html)
+    </script>
 @stop
