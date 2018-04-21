@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eba427f49733d45326be32fa0b7d54e6",
+    "content-hash": "31423c7445123c4cf34bf2aabf930cca",
     "packages": [
         {
             "name": "arcanedev/log-viewer",
@@ -1903,6 +1903,49 @@
                 "twitter"
             ],
             "time": "2016-08-17T00:36:58+00:00"
+        },
+        {
+            "name": "liyu/dingo-serializer-switch",
+            "version": "v0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/liyu001989/dingo-serializer-switch.git",
+                "reference": "82e23a7c9f46f7ec05ae9b5999c618f5c21a3290"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/liyu001989/dingo-serializer-switch/82e23a7c9f46f7ec05ae9b5999c618f5c21a3290.zip",
+                "reference": "82e23a7c9f46f7ec05ae9b5999c618f5c21a3290",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Liyu\\Dingo\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Liyu\\Dingo\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yu Li",
+                    "email": "liyu001989@gmail.com"
+                }
+            ],
+            "description": "A middleware to switch dingo serializer",
+            "time": "2018-01-06T05:09:05+00:00"
         },
         {
             "name": "mews/purifier",

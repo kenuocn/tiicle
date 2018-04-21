@@ -4511,7 +4511,7 @@
                                     on    : false
                                 }
                             ;
-                            module.verbose('First request, initializing API');
+                            module.verbose('First request, initializing Api');
                             $module
                                 .api(apiSettings)
                             ;
@@ -7711,7 +7711,7 @@
 
         apiSettings            : false,
         selectOnKeydown        : true,       // Whether selection should occur automatically when keyboard shortcuts used
-        minCharacters          : 0,          // Minimum characters required to trigger API call
+        minCharacters          : 0,          // Minimum characters required to trigger Api call
         saveRemoteData         : true,       // Whether remote name/value pairs should be stored in sessionStorage to allow remote data to be restored on page refresh
         throttle               : 200,        // How long to wait after last user input to search remotely
 
@@ -7792,7 +7792,7 @@
             labels          : 'Allowing user additions currently requires the use of labels.',
             missingMultiple : '<select> requires multiple property to be set to correctly preserve multiple values',
             method          : 'The method you called is not defined.',
-            noAPI           : 'The API module is required to load resources remotely',
+            noAPI           : 'The Api module is required to load resources remotely',
             noStorage       : 'Saving remote data requires session storage',
             noTransition    : 'This module requires ui transitions <https://github.com/Semantic-Org/UI-Transition>'
         },
@@ -13328,7 +13328,7 @@
                                 searchHTML
                             ;
                             $.extend(true, apiSettings, settings.apiSettings);
-                            module.verbose('Setting up API request', apiSettings);
+                            module.verbose('Setting up Api request', apiSettings);
                             $module.api(apiSettings);
                         }
                     },
@@ -14125,7 +14125,7 @@
         // whether to select first result after searching automatically
         selectFirstResult : false,
 
-        // API config
+        // Api config
         apiSettings       : false,
 
         // object to search
@@ -14188,7 +14188,7 @@
         },
 
         error : {
-            source      : 'Cannot search. No source used, and Semantic API module was not included',
+            source      : 'Cannot search. No source used, and Semantic Api module was not included',
             noResults   : 'Your search returned no results',
             logging     : 'Error in debug logging, exiting.',
             noEndpoint  : 'No search endpoint was specified',
@@ -18211,7 +18211,7 @@
         },
 
         error: {
-            api        : 'You attempted to load content without API module',
+            api        : 'You attempted to load content without Api module',
             method     : 'The method you called is not defined',
             missingTab : 'Activated tab cannot be found. Tabs are case-sensitive.',
             noContent  : 'The tab you specified is missing a content url.',
@@ -19339,7 +19339,7 @@
 })( jQuery, window, document );
 
 /*!
- * # Semantic UI 2.2.7 - API
+ * # Semantic UI 2.2.7 - Api
  * http://github.com/semantic-org/semantic-ui/
  *
  *
@@ -19450,13 +19450,13 @@
                                 triggerEvent = module.get.event()
                             ;
                             if( triggerEvent ) {
-                                module.verbose('Attaching API events to element', triggerEvent);
+                                module.verbose('Attaching Api events to element', triggerEvent);
                                 $module
                                     .on(triggerEvent + eventNamespace, module.event.trigger)
                                 ;
                             }
                             else if(settings.on == 'now') {
-                                module.debug('Querying API endpoint immediately');
+                                module.debug('Querying Api endpoint immediately');
                                 module.query();
                             }
                         }
@@ -19512,7 +19512,7 @@
                     query: function() {
 
                         if(module.is.disabled()) {
-                            module.debug('Element is disabled API request aborted');
+                            module.debug('Element is disabled Api request aborted');
                             return;
                         }
 
@@ -19831,7 +19831,7 @@
                                     : 0
                                 ;
                                 if(translatedResponse) {
-                                    module.debug('Modified API response in onResponse callback', settings.onResponse, translatedResponse, response);
+                                    module.debug('Modified Api response in onResponse callback', settings.onResponse, translatedResponse, response);
                                     response = translatedResponse;
                                 }
                                 if(timeLeft > 0) {
@@ -19871,7 +19871,7 @@
                         },
                         request: {
                             done: function(response, xhr) {
-                                module.debug('Successful API Response', response);
+                                module.debug('Successful Api Response', response);
                                 if(settings.cache === 'local' && url) {
                                     module.write.cachedResponse(url, response);
                                     module.debug('Saving server response locally', module.cache);
@@ -19927,7 +19927,7 @@
                                         setTimeout(module.remove.error, settings.errorDuration);
                                     }
                                 }
-                                module.debug('API Request failed', errorMessage, xhr);
+                                module.debug('Api Request failed', errorMessage, xhr);
                                 settings.onFailure.call(context, response, $module, xhr);
                             }
                         }
@@ -20118,7 +20118,7 @@
                         },
                         event: function() {
                             if( $.isWindow(element) || settings.on == 'now' ) {
-                                module.debug('API called without element, no events attached');
+                                module.debug('Api called without element, no events attached');
                                 return false;
                             }
                             else if(settings.on == 'auto') {
@@ -20169,7 +20169,7 @@
                             xhr = module.get.xhr()
                         ;
                         if( xhr && xhr.state() !== 'resolved') {
-                            module.debug('Cancelling API request');
+                            module.debug('Cancelling Api request');
                             xhr.abort();
                         }
                     },
@@ -20400,7 +20400,7 @@
         // whether parameters should be encoded with encodeURIComponent
         encodeParameters  : true,
 
-        // API action to use
+        // Api action to use
         action            : false,
 
         // templated URL to use
@@ -20466,11 +20466,11 @@
         error : {
             beforeSend        : 'The before send function has aborted the request',
             error             : 'There was an error with your request',
-            exitConditions    : 'API Request Aborted. Exit conditions met',
+            exitConditions    : 'Api Request Aborted. Exit conditions met',
             JSONParse         : 'JSON could not be parsed during error handling',
-            legacyParameters  : 'You are using legacy API success callback names',
+            legacyParameters  : 'You are using legacy Api success callback names',
             method            : 'The method you called is not defined',
-            missingAction     : 'API action used but no url was defined',
+            missingAction     : 'Api action used but no url was defined',
             missingSerialize  : 'jquery-serialize-object is required to add form data to an existing data object',
             missingURL        : 'No URL specified for api event',
             noReturnedValue   : 'The beforeSend callback must return a settings object, beforeSend ignored.',
@@ -20717,7 +20717,7 @@
                                     apiRequest       = $module.api('get request');
                                     requestCancelled = $module.api('was cancelled');
                                     if( requestCancelled ) {
-                                        module.debug('API Request cancelled by beforesend');
+                                        module.debug('Api Request cancelled by beforesend');
                                         settings.activateTest   = function(){ return false; };
                                         settings.deactivateTest = function(){ return false; };
                                     }
@@ -20732,7 +20732,7 @@
                     },
 
                     listenTo: function(apiRequest) {
-                        module.debug('API request detected, waiting for state signal', apiRequest);
+                        module.debug('Api request detected, waiting for state signal', apiRequest);
                         if(apiRequest) {
                             if(text.loading) {
                                 module.update.text(text.loading);
@@ -20740,12 +20740,12 @@
                             $.when(apiRequest)
                                 .then(function() {
                                     if(apiRequest.state() == 'resolved') {
-                                        module.debug('API request succeeded');
+                                        module.debug('Api request succeeded');
                                         settings.activateTest   = function(){ return true; };
                                         settings.deactivateTest = function(){ return true; };
                                     }
                                     else {
-                                        module.debug('API request failed');
+                                        module.debug('Api request failed');
                                         settings.activateTest   = function(){ return false; };
                                         settings.deactivateTest = function(){ return false; };
                                     }

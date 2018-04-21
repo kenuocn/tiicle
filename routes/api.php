@@ -4,26 +4,23 @@ use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
-| API Routes
+| Api Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register API routes for your application. These
+| Here is where you can register Api routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
+| is assigned the "api" middleware group. Enjoy building your Api!
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-/**前台*/
-Route::namespace('Api')->group(function () {
-
-    /**需要登录认证模块**/
-    Route::middleware(['auth:api', 'cors'])->group(function () {
 
 
-    });
+$api = app('Dingo\Api\Routing\Router');
 
-});
+foreach (glob(app()->basePath('routes/api/*.php')) as $filename) {
+    include $filename;
+}
+
+foreach (glob(app()->basePath('routes/api/Knowledge/*.php')) as $filename) {
+    include $filename;
+}

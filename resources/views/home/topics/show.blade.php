@@ -42,14 +42,19 @@
                     <span class="ui label small basic"><i
                                 class="clock icon"></i> {{$topic->created_at->diffForHumans()}}</span>
                 </p>
-                <p class="item-tags">
-                    <i class="icon grey tags " style="font-size: 1.2em"></i>
-                    <a class="ui tag label small " href="{{route('categories.show',$topic->category_id)}}">
-                        {{$topic->category->name}}
-                        <img class="tagged"
-                             src="https://omu8v0x3b.qnssl.com/uploads/images/201703/15/1/hIYECohuQg.png?imageView2/1/w/200/h/200">
-                    </a>
-                </p>
+                @if($topic->tags->isNotEmpty())
+                    <p class="item-tags">
+                        <i class="icon grey tags " style="font-size: 1.2em"></i>
+                        @foreach($topic->tags as $tag)
+                            <a class="ui tag label {{$tag->color()[$tag->colorRand()]}}" href="{{route('categories.show',$tag->id)}}">
+                                {{$tag->name}}
+                                @if($tag->images)
+                                    <img src="" class="tagged">
+                                @endif
+                            </a>
+                        @endforeach
+                    </p>
+                @endif
                 <div class="ui divider"></div>
                 <div class="ui readme markdown-body">
                     {!! $topic->body !!}

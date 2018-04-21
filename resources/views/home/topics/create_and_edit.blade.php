@@ -32,9 +32,6 @@
                     </div>
                     <div class="field">
                         <select name="tags[]" class="ui search dropdown js-example-placeholder-multiple js-data-example-ajax" multiple="multiple">
-                            @foreach ($categories as $categorie)
-                                <option value="{{ $categorie->id }}" {{ $topic->category_id == $categorie->id ? 'selected' : '' }}>{{ $categorie->name }}</option>
-                            @endforeach
                         </select>
                     </div>
                     <span class="duke-pulse editor-fullscreen"></span>
@@ -143,22 +140,22 @@
 
 
             // tags
-            function formatTopic(topic) {
+            function formatTopic(tag) {
                 return "<div class='select2-result-repository clearfix'>" +
                 "<div class='select2-result-repository__meta'>" +
                 "<div class='select2-result-repository__title'>" +
-                topic.name ? topic.name : "Laravel" +
+                tag.name ? tag.name : "Laravel" +
                     "</div></div></div>";
             }
-            function formatTopicSelection(topic) {
-                return topic.name || topic.text;
+            function formatTopicSelection(tag) {
+                return tag.name;
             }
             $(".js-example-placeholder-multiple").select2({
                 tags: true,
-                placeholder: '选择相关话题',
+                placeholder: '选择相关标签',
                 minimumInputLength: 2,
                 ajax: {
-                    url: '/api/topics',
+                    url: '/api/tags',
                     dataType: 'json',
                     delay: 250,
                     data: function (params) {

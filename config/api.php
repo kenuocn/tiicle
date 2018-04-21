@@ -8,7 +8,7 @@ return [
     | Standards Tree
     |--------------------------------------------------------------------------
     |
-    | Versioning an API with Dingo revolves around content negotiation and
+    | Versioning an Api with Dingo revolves around content negotiation and
     | custom MIME types. A custom type will belong to one of three
     | standards trees, the Vendor tree (vnd), the Personal tree
     | (prs), and the Unregistered tree (x).
@@ -23,7 +23,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | API Subtype
+    | Api Subtype
     |--------------------------------------------------------------------------
     |
     | Your subtype will follow the standards tree you use when used in the
@@ -37,10 +37,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default API Version
+    | Default Api Version
     |--------------------------------------------------------------------------
     |
-    | This is the default version when strict mode is disabled and your API
+    | This is the default version when strict mode is disabled and your Api
     | is accessed via a web browser. It's also used as the default version
     | when generating your APIs documentation.
     |
@@ -50,10 +50,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default API Prefix
+    | Default Api Prefix
     |--------------------------------------------------------------------------
     |
-    | A default prefix to use for your API routes so you don't have to
+    | A default prefix to use for your Api routes so you don't have to
     | specify it for each group.
     |
     */
@@ -62,10 +62,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default API Domain
+    | Default Api Domain
     |--------------------------------------------------------------------------
     |
-    | A default domain to use for your API routes so you don't have to
+    | A default domain to use for your Api routes so you don't have to
     | specify it for each group.
     |
     */
@@ -77,7 +77,7 @@ return [
     | Name
     |--------------------------------------------------------------------------
     |
-    | When documenting your API using the API Blueprint syntax you can
+    | When documenting your Api using the Api Blueprint syntax you can
     | configure a default name to avoid having to manually specify
     | one when using the command.
     |
@@ -105,8 +105,8 @@ return [
     |--------------------------------------------------------------------------
     |
     | Enabling strict mode will require clients to send a valid Accept header
-    | with every request. This also voids the default API version, meaning
-    | your API will not be browsable via a web browser.
+    | with every request. This also voids the default Api version, meaning
+    | your Api will not be browsable via a web browser.
     |
     */
 
@@ -130,7 +130,7 @@ return [
     | Generic Error Format
     |--------------------------------------------------------------------------
     |
-    | When some HTTP exceptions are not caught and dealt with the API will
+    | When some HTTP exceptions are not caught and dealt with the Api will
     | generate a generic error response in the format provided. Any
     | keys that aren't replaced with corresponding values will be
     | removed from the final response.
@@ -147,10 +147,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | API Middleware
+    | Api Middleware
     |--------------------------------------------------------------------------
     |
-    | Middleware that will be applied globally to all API requests.
+    | Middleware that will be applied globally to all Api requests.
     |
     */
 
@@ -164,7 +164,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | The authentication providers that should be used when attempting to
-    | authenticate an incoming API request.
+    | authenticate an incoming Api request.
     |
     */
 
@@ -177,7 +177,7 @@ return [
     | Throttling / Rate Limiting
     |--------------------------------------------------------------------------
     |
-    | Consumers of your API can be limited to the amount of requests they can
+    | Consumers of your Api can be limited to the amount of requests they can
     | make. You can create your own throttles or simply change the default
     | throttles.
     |
