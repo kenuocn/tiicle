@@ -1,5 +1,8 @@
 @extends('home.layouts.app')
 @section('title', isset($topic->id) ? '编辑话题'  : ' 新建话题')
+@section('css')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+@stop
 @section('content')
     <div class="fourteen column">
         <div class="ui segment">
@@ -28,8 +31,11 @@
                         </div>
                     </div>
                     <div class="field">
-                        <input class="form-control" type="text" name="title" id="title-field"
-                               value="{{ old('title', $topic->title ) }}" required="" placeholder="标题">
+                        <select name="tags[]" class="ui search dropdown js-example-placeholder-multiple js-data-example-ajax" multiple="multiple">
+                            @foreach ($categories as $categorie)
+                                <option value="{{ $categorie->id }}" {{ $topic->category_id == $categorie->id ? 'selected' : '' }}>{{ $categorie->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <span class="duke-pulse editor-fullscreen"></span>
                     <div class="field">
@@ -44,6 +50,7 @@
         </div>
     </div>
 @section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script>
 
         $(document).ready(function () {
@@ -131,6 +138,45 @@
                         this.settings.onFileUploaded.call(this, filename);
                     }
                     return false;
+                }
+            });
+
+
+            // tags
+            function formatTopic(topic) {
+                return "<div class='select2-result-repository clearfix'>" +
+                "<div class='select2-result-repository__meta'>" +
+                "<div class='select2-result-repository__title'>" +
+                topic.name ? topic.name : "Laravel" +
+                    "</div></div></div>";
+            }
+            function formatTopicSelection(topic) {
+                return topic.name || topic.text;
+            }
+            $(".js-example-placeholder-multiple").select2({
+                tags: true,
+                placeholder: '选择相关话题',
+                minimumInputLength: 2,
+                ajax: {
+                    url: '/api/topics',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            q: params.term
+                        };
+                    },
+                    processResults: function (data, params) {
+                        return {
+                            results: data
+                        };
+                    },
+                    cache: true
+                },
+                templateResult: formatTopic,
+                templateSelection: formatTopicSelection,
+                escapeMarkup: function (markup) {
+                    return markup;
                 }
             });
         });

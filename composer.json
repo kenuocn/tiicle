@@ -26,7 +26,9 @@
     "mews/purifier": "~2.0",
     "overtrue/laravel-lang": "^3.0",
     "overtrue/pinyin": "~3.0",
-    "predis/predis": "~1.0"
+    "predis/predis": "~1.0",
+    "viacreative/sudo-su": "~1.1",
+    "dingo/api": "2.0.0-alpha1"
   },
   "require-dev": {
     "barryvdh/laravel-debugbar": "~3.1",

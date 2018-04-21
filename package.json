@@ -19,6 +19,7 @@
     "vue": "^2.5.7"
   },
   "dependencies": {
+    "iview": "^2.13.0",
     "sweetalert2": "^7.0.9"
   }
 }
