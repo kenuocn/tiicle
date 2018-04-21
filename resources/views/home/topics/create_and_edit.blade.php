@@ -13,15 +13,23 @@
                     @endif
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="field">
-                        <input class="form-control" type="text" name="title" id="title-field"
-                               value="{{ old('title', $topic->title ) }}" required="" placeholder="标题">
+                        <div class="two fields">
+                            <div class="two wide field">
+                                <select name="category_id" class="ui search dropdown">
+                                    @foreach ($categories as $categorie)
+                                        <option value="{{ $categorie->id }}" {{ $topic->category_id == $categorie->id ? 'selected' : '' }}>{{ $categorie->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="fourteen wide  field">
+                                <input class="form-control" type="text" name="title" id="title-field"
+                                       value="{{ old('title', $topic->title ) }}" required="" placeholder="标题">
+                            </div>
+                        </div>
                     </div>
                     <div class="field">
-                        <select name="category_id" class="ui dropdown">
-                            @foreach ($categories as $categorie)
-                                <option value="{{ $categorie->id }}" {{ $topic->category_id == $categorie->id ? 'selected' : '' }}>{{ $categorie->name }}</option>
-                            @endforeach
-                        </select>
+                        <input class="form-control" type="text" name="title" id="title-field"
+                               value="{{ old('title', $topic->title ) }}" required="" placeholder="标题">
                     </div>
                     <span class="duke-pulse editor-fullscreen"></span>
                     <div class="field">
