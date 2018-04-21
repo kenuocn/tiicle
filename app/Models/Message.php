@@ -4,6 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Message
+ *
+ * @property-read \App\Models\User $fromUser
+ * @property-read \App\Models\User $toUser
+ * @mixin \Eloquent
+ */
 class Message extends Model
 {
     protected $table = 'messages';

@@ -2,6 +2,19 @@
 
 namespace App\Models;
 
+/**
+ * App\Models\Topic
+ *
+ * @property-read \App\Models\Category $category
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Reply[] $replies
+ * @property-read \App\Models\User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $votedTopics
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Model ordered()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Topic recent()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Topic recentReplied()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Topic withOrder($order)
+ * @mixin \Eloquent
+ */
 class Topic extends Model {
     protected $fillable = ['title', 'body', 'body_original', 'category_id', 'excerpt', 'slug', 'voted_count'];
 

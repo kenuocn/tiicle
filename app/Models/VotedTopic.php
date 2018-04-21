@@ -4,6 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\VotedTopic
+ *
+ * @property-read \App\Models\Topic $topics
+ * @property-read \App\Models\User $users
+ * @mixin \Eloquent
+ */
 class VotedTopic extends Model {
     protected $table = 'user_topic';
 
