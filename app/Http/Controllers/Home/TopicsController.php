@@ -117,16 +117,29 @@ class TopicsController extends Controller {
      * 编辑话题
      * @param TopicRequest $request
      * @param Topic $topic
+     * @param Tag $tag
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(TopicRequest $request, Topic $topic)
+    public function update(TopicRequest $request, Topic $topic ,Tag $tag)
     {
         $this->authorize('update', $topic);
         $topic->fill($request->all());
         $topic->body_original = remove_vue($request->get('body'));
         $topic->body = $this->convertMarkdownToHtml($request->get('body'));
         $topic->save();
+
+        //Todo 处理标签
+        if(!empty($request->get('tags',null))){
+            $tags = $tag->normalizeTag($request->tags);
+
+            // 给话题添加标签
+            $topic->tags()->attach($tags);
+        }
+
+        flash('发布话题成功')->success()->important();
+
+        return redirect()->to($topic->link());
 
         flash('编辑话题成功')->success()->important();
 
