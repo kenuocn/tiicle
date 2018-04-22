@@ -2203,6 +2203,19 @@ svg {
   }
 }
 
+.ui.feed > .event > .content .meta{
+    a.author{
+      font-size: 14px;
+      color: #777;
+    }
+
+    .date{
+      font-size: 14px;
+      color: #777;
+    }
+}
+
+
 #toc {
   padding: 22px 4px;
 }

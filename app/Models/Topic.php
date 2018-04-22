@@ -111,7 +111,7 @@ class Topic extends Model {
                 break;
         }
         // 预加载防止 N+1 问题
-        return $query->with('user', 'category');
+        return $query->with('user', 'category','tags');
     }
 
     public function scopeRecentReplied($query)

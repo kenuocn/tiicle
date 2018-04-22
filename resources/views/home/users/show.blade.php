@@ -83,7 +83,7 @@
                 </div>
                 @if (if_route('users.show',$user->id))
                     @include('home.users._topics', [
-                        'topics' => $user->topics()->with('category')->recent()->paginate(10),
+                        'topics' => $user->topics()->with('category','tags')->recent()->paginate(10),
                         'user'=> $user
                     ])
                 @elseif(if_route('users.replies',$user->id))

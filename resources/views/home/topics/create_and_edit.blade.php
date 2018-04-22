@@ -1,8 +1,5 @@
 @extends('home.layouts.app')
 @section('title', isset($topic->id) ? '编辑话题'  : ' 新建话题')
-@section('css')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-@stop
 @section('content')
     <div class="fourteen column">
         <div class="ui segment">
@@ -10,7 +7,7 @@
                 @include('home.common.error')
                 <form @if($topic->id) action="{{ route('topics.update', $topic->id) }}"
                       @else action="{{ route('topics.store') }}" @endif method="POST" class="ui form item-form"
-                      accept-charset="UTF-8">
+                      accept-charset="UTF-8" onkeydown="if(event.keyCode==13){return false;}">
                     @if($topic->id)
                         <input type="hidden" name="_method" value="PUT">
                     @endif
@@ -25,19 +22,22 @@
                                 </select>
                             </div>
                             <div class="fourteen wide  field">
-                                <input class="form-control" type="text" name="title" id="title-field"
-                                       value="{{ old('title', $topic->title ) }}" required="" placeholder="标题">
+                                <input class="form-control" type="text" name="title"
+                                       value="{{ old('title', $topic->title ) }}" placeholder="标题">
                             </div>
                         </div>
                     </div>
-                    <div class="field">
-                        <select name="tags[]" class="ui search dropdown js-example-placeholder-multiple js-data-example-ajax" multiple="multiple">
+                    <div class="field select">
+                        <select name="tags[]" class="ui fluid search dropdown" multiple="" placeholder="标签">
+                            @foreach($tags as $tag)
+                                <option value="{{$tag->id}}">{{$tag->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <span class="duke-pulse editor-fullscreen"></span>
                     <div class="field">
-                        <textarea rows="15" id="editor" name="body" placeholder="请使用 Markdown 编写"
-                                  required="">{{old('body', $topic->body_original )}}</textarea>
+                        <textarea rows="15" id="editor" name="body"
+                                  placeholder="请使用 Markdown 编写">{{old('body', $topic->body_original )}}</textarea>
                     </div>
                     <div class="ui message">
                         <button type="submit" class="ui button teal publish-btn"><i class="icon send"></i> 发布</button>
@@ -47,9 +47,7 @@
         </div>
     </div>
 @section('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script>
-
         $(document).ready(function () {
 
             var interval = setInterval(function () {
@@ -138,45 +136,17 @@
                 }
             });
 
+            // select
+            $('.select .dropdown')
+                .dropdown({
+                    forceSelection: false,
+                    allowAdditions: true,
 
-            // tags
-            function formatTopic(tag) {
-                return "<div class='select2-result-repository clearfix'>" +
-                "<div class='select2-result-repository__meta'>" +
-                "<div class='select2-result-repository__title'>" +
-                tag.name ? tag.name : "Laravel" +
-                    "</div></div></div>";
-            }
-            function formatTopicSelection(tag) {
-                return tag.name;
-            }
-            $(".js-example-placeholder-multiple").select2({
-                tags: true,
-                placeholder: '选择相关标签',
-                minimumInputLength: 2,
-                ajax: {
-                    url: '/api/tags',
-                    dataType: 'json',
-                    delay: 250,
-                    data: function (params) {
-                        return {
-                            q: params.term
-                        };
-                    },
-                    processResults: function (data, params) {
-                        return {
-                            results: data
-                        };
-                    },
-                    cache: true
-                },
-                templateResult: formatTopic,
-                templateSelection: formatTopicSelection,
-                escapeMarkup: function (markup) {
-                    return markup;
-                }
-            });
+                })
+            ;
         });
     </script>
 @stop
 @endsection
+
+
