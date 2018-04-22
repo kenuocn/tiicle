@@ -29,8 +29,11 @@
                     </div>
                     <div class="field select">
                         <select name="tags[]" class="ui fluid search dropdown" multiple="" placeholder="标签">
+                            @php
+                                $tag_ids = $topic->tags->pluck('id')->toArray();
+                            @endphp
                             @foreach($tags as $tag)
-                                <option value="{{$tag->id}}">{{$tag->name}}</option>
+                                <option value="{{$tag->id}}" {{ in_array($tag->id,$tag_ids) ? 'selected' : '' }}>{{$tag->name}}</option>
                             @endforeach
                         </select>
                     </div>
