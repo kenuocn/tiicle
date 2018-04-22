@@ -4,6 +4,7 @@
 @section('css')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css" rel="stylesheet">
     <link href="{{ asset('vendor/css/prism.css') }}" rel="stylesheet">
+    <link href="{{asset('vendor/css/jquery.tocify.css')}}" rel="stylesheet">
 @stop
 @section('content')
     <div class="twelve wide column">
@@ -41,14 +42,19 @@
                     <span class="ui label small basic"><i
                                 class="clock icon"></i> {{$topic->created_at->diffForHumans()}}</span>
                 </p>
-                <p class="item-tags">
-                    <i class="icon grey tags " style="font-size: 1.2em"></i>
-                    <a class="ui tag label small " href="{{route('categories.show',$topic->category_id)}}">
-                        {{$topic->category->name}}
-                        <img class="tagged"
-                             src="https://omu8v0x3b.qnssl.com/uploads/images/201703/15/1/hIYECohuQg.png?imageView2/1/w/200/h/200">
-                    </a>
-                </p>
+                @if($topic->tags->isNotEmpty())
+                    <p class="item-tags">
+                        <i class="icon grey tags " style="font-size: 1.2em"></i>
+                        @foreach($topic->tags as $tag)
+                            <a class="ui tag label {{color()[colorRand()]}}" href="{{route('tags.show',$tag->id)}}">
+                                {{$tag->name}}
+                                @if($tag->images)
+                                    <img src="" class="tagged">
+                                @endif
+                            </a>
+                        @endforeach
+                    </p>
+                @endif
                 <div class="ui divider"></div>
                 <div class="ui readme markdown-body">
                     {!! $topic->body !!}
@@ -76,20 +82,42 @@
 
     {{-- 右边栏 --}}
     @include('home.topics._show_sidebar',['user'=> $topic->user,'topic' => $topic])
-@section('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
-<script src=" {{ asset('vendor/js/prism.js') }}"></script>
-<script>
-    $(document).ready(function () {
-        var $config = {
-            title: '{{{ $topic->title }}} | from LC #laravel-china# {{ $topic->user->id != 1 ? '@kenuo' : '' }} {{ $topic->user->githu_name ? '@'.$topic->user->githu_name : '' }}',
-            wechatQrcodeTitle: "微信扫一扫：分享", // 微信二维码提示文字
-            wechatQrcodeHelper: '<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>',
-            image: "https://dn-phphub.qbox.me/uploads/images/201701/29/1/pQimFCe1r5.png",
-            sites: ['weibo', 'wechat', 'qzone', 'qq'],
-        };
-        socialShare('.social-share', $config);
-    });
-</script>
 @stop
+@section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+    <script src=" {{ asset('vendor/js/prism.js') }}"></script>
+    <script src="{{ asset('vendor/js/jquery-ui.min.js') }}"></script>
+    <script src="{{asset('vendor/js/jquery.tocify.min.js')}}"></script>
+    <script>
+        $(document).ready(function () {
+            var $config = {
+                title: '{{{ $topic->title }}} | from LC #laravel-china# {{ $topic->user->id != 1 ? '@kenuo' : '' }} {{ $topic->user->githu_name ? '@'.$topic->user->githu_name : '' }}',
+                wechatQrcodeTitle: "微信扫一扫：分享", // 微信二维码提示文字
+                wechatQrcodeHelper: '<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>',
+                image: "https://dn-phphub.qbox.me/uploads/images/201701/29/1/pQimFCe1r5.png",
+                sites: ['weibo', 'wechat', 'qzone', 'qq'],
+            };
+            socialShare('.social-share', $config);
+
+            $("#toc").closest('.sticky').visibility({
+                type: 'fixed',
+            });
+
+            $("#toc").tocify({
+                selectors: "h2,h3,h4,h5,h6", //文章节点，可以关联生成目录
+                showAndHide: true, //是否展示二级目录结构
+                showEffect: "slideDown",
+                theme: "bootstrap",
+            });
+
+        });
+
+        // 增加行号
+        $('pre').addClass("line-numbers").css("white-space", "pre-wrap");
+
+        var html = '<div class="window-controls"><i class="red"></i><i class="yellow"></i><i class="green"></i></div>';
+        $('pre').prepend(html);
+
+
+    </script>
 @stop

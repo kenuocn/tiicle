@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Models\Tag;
 use App\Models\Topic;
 use App\Models\User;
 use App\Models\Category;
@@ -63,23 +64,34 @@ class TopicsController extends Controller {
      */
     public function create(Topic $topic)
     {
+        $tags = Tag::all();
         $categories = Category::all();
-        return view('home.topics.create_and_edit', compact('topic', 'categories'));
+
+        return view('home.topics.create_and_edit', compact('topic', 'categories','tags'));
     }
 
     /**
      * 发布话题
      * @param TopicRequest $request
      * @param Topic $topic
+     * @param Tag $tag
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(TopicRequest $request, Topic $topic)
+    public function store(TopicRequest $request, Topic $topic,Tag $tag)
     {
         $topic->fill($request->all());
         $topic->body_original = remove_vue($request->get('body'));
         $topic->body = $this->convertMarkdownToHtml($request->get('body'));
         $topic->user_id = auth()->id();
         $topic->save();
+
+        //Todo 处理标签
+        if(!empty($request->get('tags',null))){
+            $tags = $tag->normalizeTag($request->tags);
+
+            // 给话题添加标签
+            $topic->tags()->attach($tags);
+        }
 
         flash('发布话题成功')->success()->important();
 

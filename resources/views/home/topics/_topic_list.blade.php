@@ -23,10 +23,24 @@
                     </span>
                 </div>
             </div>
-
-            <div class="item-meta">
-                <a class="ui label basic light grey" href="{{ $topic->link() }}"><i class="thumbs up icon"></i> {{ $topic->voted_count}} </a>
-                <a class="ui label basic light grey" href="{{ $topic->link() }}"><i class="comment icon"></i> {{ $topic->reply_count }} </a>
+            <div class="five wide right aligned column">
+                @if($topic->tags->isNotEmpty())
+                    <span class="item-tags">
+                        @foreach($topic->tags as $tag)
+                            <a class="ui label mini {{color()[colorRand()]}}" href="{{route('tags.show',$tag->id)}}">
+                                    {{$tag->name}}
+                                @if($tag->images)
+                                    <img src="" class="tagged">
+                                @endif
+                                </a>
+                        @endforeach
+                    </span>
+                @endif
+                <div class="item-meta">
+                    <a class="ui label basic light grey" href="{{ $topic->link() }}"><i class="eye icon"></i> {{ $topic->view_count}} </a>
+                    <a class="ui label basic light grey" href="{{ $topic->link() }}"><i class="thumbs up icon"></i> {{ $topic->voted_count}} </a>
+                    <a class="ui label basic light grey" href="{{ $topic->link() }}"><i class="comment icon"></i> {{ $topic->reply_count }} </a>
+                </div>
             </div>
         </div>
         @endforeach

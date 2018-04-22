@@ -7,9 +7,7 @@
                 @if (isset($category))
                 <div>
                     <h1 class="pull-left">
-                        <img class="ui middle aligned tiny image tagged" src="https://omu8v0x3b.qnssl.com/uploads/images/201703/26/1/u5BuIO5Ujn.png?imageView2/1/w/200/h/200">
-                        <a class="ui tag label orange" href="{{ route('categories.show', $category->id) }}">{{$category->name}}</a>
-
+                        <a class="ui tag label large {{color()[colorRand()]}}" href="{{ route('categories.show', $category->id) }}">{{$category->name}}</a>
                     </h1>
                     <div class="login-required ui compact floating subscribe button subscribe-wrap  pull-right teal" data-act="subscribe" data-id="10">
                         <span class="state">关注标签</span>

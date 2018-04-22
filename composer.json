@@ -12,6 +12,7 @@
     "VentureCraft/revisionable": "^1.28",
     "arcanedev/log-viewer": "^4.4",
     "barryvdh/laravel-cors": "^0.10.0",
+    "dingo/api": "2.0.0-alpha1",
     "encore/redis-manager": "^0.1.0",
     "erusev/parsedown": "^1.6",
     "fideloper/proxy": "~3.3",
@@ -23,13 +24,17 @@
     "laravel/horizon": "~1.0",
     "laravel/socialite": "^3.0",
     "laravel/tinker": "~1.0",
+    "liyu/dingo-serializer-switch": "^0.3.0",
     "mews/purifier": "~2.0",
     "overtrue/laravel-lang": "^3.0",
     "overtrue/pinyin": "~3.0",
-    "predis/predis": "~1.0"
+    "predis/predis": "~1.0",
+    "viacreative/sudo-su": "~1.1"
   },
   "require-dev": {
     "barryvdh/laravel-debugbar": "~3.1",
+    "barryvdh/laravel-ide-helper": "^2.4",
+    "doctrine/dbal": " ~2.3",
     "filp/whoops": "~2.0",
     "fzaninotto/faker": "~1.4",
     "mockery/mockery": "~1.0",
@@ -66,6 +71,11 @@
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
       "@php artisan package:discover"
+    ],
+    "post-update-cmd": [
+      "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+      "php artisan ide-helper:generate",
+      "php artisan ide-helper:meta"
     ]
   },
   "config": {

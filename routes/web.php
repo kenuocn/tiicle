@@ -52,6 +52,8 @@ Route::namespace('Home')->group(function () {
 
     Route::resource('replies', 'RepliesController', ['only' => ['store', 'destroy']]); //话题回复
 
+    Route::get('tags/{tag}', 'TagsController@show')->name('tags.show'); //获取某个标签信息
+
     Route::post('uploads/topics_upload_image', 'UploadsController@topicsUploadImage')->name('uploads.topics_upload_image');  //话题图片上传
 
 });

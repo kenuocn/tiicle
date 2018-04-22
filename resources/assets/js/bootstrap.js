@@ -1,4 +1,3 @@
-
 window._ = require('lodash');
 
 /**
@@ -9,11 +8,12 @@ window._ = require('lodash');
 
 try {
     window.$ = window.jQuery = require('jquery');
-    window.swal = require('./vendor/sweetalert.min');
-    window.SimpleMDE = require('./vendor/simplemde.min');
-    require('./vendor/semantic');
-    require('./vendor/particles.min');
-} catch (e) {}
+    window.swal = require('./vendor/sweetalert.min');  // sweetalert提示框
+    window.SimpleMDE = require('./vendor/simplemde.min');  // simplemde编辑器
+    require('./vendor/semantic');  // semantic ui
+    require('./vendor/particles.min'); // 登录动画效果
+} catch (e) {
+}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -40,7 +40,7 @@ if (token) {
 }
 
 /**
- * Echo exposes an expressive API for subscribing to channels and listening
+ * Echo exposes an expressive Api for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
  */

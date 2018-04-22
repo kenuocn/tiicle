@@ -7,29 +7,40 @@
                 @include('home.common.error')
                 <form @if($topic->id) action="{{ route('topics.update', $topic->id) }}"
                       @else action="{{ route('topics.store') }}" @endif method="POST" class="ui form item-form"
-                      accept-charset="UTF-8">
+                      accept-charset="UTF-8" onkeydown="if(event.keyCode==13){return false;}">
                     @if($topic->id)
                         <input type="hidden" name="_method" value="PUT">
                     @endif
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="field">
-                        <input class="form-control" type="text" name="title" id="title-field"
-                               value="{{ old('title', $topic->title ) }}" required="" placeholder="标题">
+                        <div class="two fields">
+                            <div class="two wide field">
+                                <select name="category_id" class="ui search dropdown">
+                                    @foreach ($categories as $categorie)
+                                        <option value="{{ $categorie->id }}" {{ $topic->category_id == $categorie->id ? 'selected' : '' }}>{{ $categorie->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="fourteen wide  field">
+                                <input class="form-control" type="text" name="title"
+                                       value="{{ old('title', $topic->title ) }}" placeholder="标题">
+                            </div>
+                        </div>
                     </div>
-                    <div class="field">
-                        <select name="category_id" class="ui dropdown">
-                            @foreach ($categories as $categorie)
-                                <option value="{{ $categorie->id }}" {{ $topic->category_id == $categorie->id ? 'selected' : '' }}>{{ $categorie->name }}</option>
+                    <div class="field select">
+                        <select name="tags[]" class="ui fluid search dropdown" multiple="" placeholder="标签">
+                            @foreach($tags as $tag)
+                                <option value="{{$tag->id}}">{{$tag->name}}</option>
                             @endforeach
                         </select>
                     </div>
                     <span class="duke-pulse editor-fullscreen"></span>
                     <div class="field">
-                        <textarea rows="15" id="editor" name="body" placeholder="请使用 Markdown 编写"
-                                  required="">{{old('body', $topic->body_original )}}</textarea>
+                        <textarea rows="15" id="editor" name="body"
+                                  placeholder="请使用 Markdown 编写">{{old('body', $topic->body_original )}}</textarea>
                     </div>
                     <div class="ui message">
-                        <button type="submit" class="ui button teal publish-btn"><i class="icon send"></i> 发布</button>
+                        <button type="submit" class="ui button teal publish-btn" id="topic-submit"><i class="icon send"></i> 发布</button>
                     </div>
                 </form>
             </div>
@@ -37,7 +48,6 @@
     </div>
 @section('scripts')
     <script>
-
         $(document).ready(function () {
 
             var interval = setInterval(function () {
@@ -125,7 +135,18 @@
                     return false;
                 }
             });
+
+            // select
+            $('.select .dropdown')
+                .dropdown({
+                    forceSelection: false,
+                    allowAdditions: true,
+
+                })
+            ;
         });
     </script>
 @stop
 @endsection
+
+

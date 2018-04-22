@@ -1,0 +1,62 @@
+#toc {
+    /*
+       * jquery.tocify.css 1.9.0
+       * Author: @gregfranko
+       */
+    /* The Table of Contents is composed of multiple nested unordered lists.  These styles remove the default styling of an unordered list because it is ugly. */
+    /* Top level header elements */
+    /* Top level subheader elements.  These are the first nested items underneath a header element. */
+    /* Makes the font smaller for all subheader elements. */
+    /* Further indents second level subheader elements. */
+    /* Further indents third level subheader elements. You can continue this pattern if you have more nested elements. */
+    /* Twitter Bootstrap Override Style */
+    /* Twitter Bootstrap Override Style */
+}
+
+#toc .tocify ul, #toc .tocify li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+    line-height: 30px;
+}
+
+#toc .tocify-header {
+    text-indent: 0px;
+    padding: 0px 8px;
+}
+
+#toc .tocify-subheader {
+    text-indent: 10px;
+    display: none;
+}
+
+#toc .tocify-subheader li {
+    font-size: 13px;
+}
+
+#toc .tocify-subheader .tocify-subheader {
+    text-indent: 30px;
+}
+
+#toc .tocify-subheader .tocify-subheader .tocify-subheader {
+    text-indent: 40px;
+}
+
+#toc .nav-list > li > a, #toc .nav-list .nav-header {
+    margin: 0px;
+}
+
+#toc .nav-list > li > a {
+    padding: 5px;
+    color: inherit;
+}
+
+#toc li.tocify-item:hover {
+    background: rgba(241, 244, 247, 0.78);
+}
+
+#toc li.tocify-item.active {
+    border-bottom: 1px solid #00b5ad;
+    margin-bottom: -1px;
+}
