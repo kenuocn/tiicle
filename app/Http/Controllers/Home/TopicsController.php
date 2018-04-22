@@ -107,9 +107,10 @@ class TopicsController extends Controller {
     public function edit(Topic $topic)
     {
         $this->authorize('update', $topic);
+        $tags = Tag::all();
         $categories = Category::all();
 
-        return view('home.topics.create_and_edit', compact('topic', 'categories'));
+        return view('home.topics.create_and_edit', compact('topic', 'categories','tags'));
     }
 
     /**
