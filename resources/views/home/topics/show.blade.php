@@ -46,7 +46,7 @@
                     <p class="item-tags">
                         <i class="icon grey tags " style="font-size: 1.2em"></i>
                         @foreach($topic->tags as $tag)
-                            <a class="ui tag label {{$tag->color()[$tag->colorRand()]}}" href="{{route('categories.show',$tag->id)}}">
+                            <a class="ui tag label {{color()[colorRand()]}}" href="{{route('categories.show',$tag->id)}}">
                                 {{$tag->name}}
                                 @if($tag->images)
                                     <img src="" class="tagged">

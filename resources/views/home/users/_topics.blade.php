@@ -29,7 +29,7 @@
                     @if($topic->tags->isNotEmpty())
                         <span class="item-tags">
                             @foreach($topic->tags as $tag)
-                                <a class="ui tag label {{$tag->color()[$tag->colorRand()]}}" href="{{route('categories.show',$tag->id)}}">
+                                <a class="ui label mini {{color()[colorRand()]}}" href="{{route('categories.show',$tag->id)}}">
                                     {{$tag->name}}
                                     @if($tag->images)
                                         <img src="" class="tagged">

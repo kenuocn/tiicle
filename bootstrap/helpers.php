@@ -28,3 +28,36 @@ function remove_vue($body = null)
     return $body;
 }
 
+
+/**
+ * 颜色.
+ * @return array
+ */
+function color()
+{
+    return [
+        'red',
+        'orange',
+        'yellow',
+        'olive',
+        'green',
+        'teal',
+        'blue',
+        'violet',
+        'purple',
+        'pink',
+        'brown',
+        'grey',
+//        'black',
+    ];
+}
+
+/**
+ * 随机返回标签颜色
+ * @return mixed
+ */
+function colorRand()
+{
+    return array_rand(color(),1);
+}
+

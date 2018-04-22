@@ -39,39 +39,6 @@ class Tag extends Model
     }
 
     /**
-     * 颜色.
-     * @return array
-     */
-    public function color()
-    {
-        return [
-            '',
-            'red',
-            'orange',
-            'yellow',
-            'olive',
-            'green',
-            'teal',
-            'blue',
-            'violet',
-            'purple',
-            'pink',
-            'brown',
-            'grey',
-            'black',
-        ];
-    }
-
-    /**
-     * 随机返回标签颜色
-     * @return mixed
-     */
-    public function colorRand()
-    {
-        return array_rand($this->color(),1);
-    }
-
-    /**
      * 返回id格式数组
      * @param $tags
      * @return array
