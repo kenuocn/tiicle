@@ -8,7 +8,7 @@ body {
   font-size: 14px;
   color: #525252;
   background-color: #f0f2f5;
-  font-family: NotoSansHans-Regular, AvenirNext-Regular, arial, Hiragino Sans GB, "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
 }
 
 a {
@@ -2203,18 +2203,34 @@ svg {
   }
 }
 
-.ui.feed > .event > .content .meta{
-    a.author{
-      font-size: 14px;
-      color: #777;
-    }
+/*
+  topics 样式修改
+**/
 
-    .date{
-      font-size: 14px;
-      color: #777;
-    }
+.ui.feed > .event > .content .meta {
+  margin-top: 10px;
+
+  a.author {
+    font-size: 12px;
+    color: rgba(0, 0, 0, .6);
+  }
+
+  .date {
+    font-size: 12px;
+    color: rgba(0, 0, 0, .6);
+  }
 }
 
+.ui.feed > .event > .five {
+  .item-tags, .item-meta{
+    display: block;
+    text-align: right;
+  }
+
+  .item-meta{
+    margin-top: 10px;
+  }
+}
 
 #toc {
   padding: 22px 4px;

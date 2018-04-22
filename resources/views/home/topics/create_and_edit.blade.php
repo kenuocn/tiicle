@@ -40,7 +40,7 @@
                                   placeholder="请使用 Markdown 编写">{{old('body', $topic->body_original )}}</textarea>
                     </div>
                     <div class="ui message">
-                        <button type="submit" class="ui button teal publish-btn"><i class="icon send"></i> 发布</button>
+                        <button type="submit" class="ui button teal publish-btn" id="topic-submit"><i class="icon send"></i> 发布</button>
                     </div>
                 </form>
             </div>

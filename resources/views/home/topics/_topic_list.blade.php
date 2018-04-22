@@ -21,24 +21,26 @@
                         <i class="time icon"></i>
                         {{$topic->created_at->diffForHumans()}}
                     </span>
-                    @if($topic->tags->isNotEmpty())
-                        <span class="item-tags">
-                            <i class="icon grey tags " style="font-size: 1.2em"></i>
-                            @foreach($topic->tags as $tag)
-                                <a class="ui tag label {{$tag->color()[$tag->colorRand()]}}" href="{{route('categories.show',$tag->id)}}">
-                                    {{$tag->name}}
-                                    @if($tag->images)
-                                        <img src="" class="tagged">
-                                    @endif
-                                </a>
-                            @endforeach
-                        </span>
-                    @endif
                 </div>
             </div>
-            <div class="item-meta">
-                <a class="ui label basic light grey" href="{{ $topic->link() }}"><i class="thumbs up icon"></i> {{ $topic->voted_count}} </a>
-                <a class="ui label basic light grey" href="{{ $topic->link() }}"><i class="comment icon"></i> {{ $topic->reply_count }} </a>
+            <div class="five wide right aligned column">
+                @if($topic->tags->isNotEmpty())
+                    <span class="item-tags">
+                        @foreach($topic->tags as $tag)
+                            <a class="ui tag label {{$tag->color()[$tag->colorRand()]}}" href="{{route('categories.show',$tag->id)}}">
+                                    {{$tag->name}}
+                                @if($tag->images)
+                                    <img src="" class="tagged">
+                                @endif
+                                </a>
+                        @endforeach
+                    </span>
+                @endif
+                <div class="item-meta">
+                    <a class="ui label basic light grey" href="{{ $topic->link() }}"><i class="eye icon"></i> {{ $topic->view_count}} </a>
+                    <a class="ui label basic light grey" href="{{ $topic->link() }}"><i class="thumbs up icon"></i> {{ $topic->voted_count}} </a>
+                    <a class="ui label basic light grey" href="{{ $topic->link() }}"><i class="comment icon"></i> {{ $topic->reply_count }} </a>
+                </div>
             </div>
         </div>
         @endforeach
